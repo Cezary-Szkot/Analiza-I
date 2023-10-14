@@ -1,0 +1,304 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry} \geometry{margin=85pt}
+\usepackage[polish]{babel}
+\usepackage{polski}
+\usepackage[document]{ragged2e}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage[skins]{tcolorbox}
+\usepackage{kpfonts}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+
+%%%%%%%%%%
+% KOLORY %
+%%%%%%%%%%
+
+\definecolor{col1}{HTML}{ffcccc}
+\definecolor{col2}{HTML}{ccccff}
+\definecolor{darkred}{HTML}{8B0000}
+
+%%%%%%%%%
+% RAMKI %
+%%%%%%%%%
+
+\newtcolorbox{defr}[2][]{%
+  enhanced,colback=white,colframe=col1,coltitle=black,
+  sharp corners,boxrule=1.5pt,
+  fonttitle=\bfseries,top=13pt,
+  attach boxed title to top left={yshift=-\tcboxedtitleheight/2, xshift=10pt},
+  boxed title style={tile,size=small,left=5pt,right=5pt, 
+  colback=col1,before upper=\strut},
+  title=#2,#1}
+
+\newtcolorbox{twier}[2][]{%
+  enhanced,colback=white,colframe=col2,coltitle=black,
+  sharp corners,boxrule=1.5pt,
+  fonttitle=\bfseries,top=13pt,
+  attach boxed title to top left={yshift=-\tcboxedtitleheight/2, xshift=10pt},
+  boxed title style={tile,size=small,left=5pt,right=5pt, 
+  colback=col2,before upper=\strut},
+  title=#2,#1}
+
+%%%%%%%%%%%
+% KOMENDY %
+%%%%%%%%%%%
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\ifff}{\Leftrightarrow}
+\newcommand{\imp}{\Rightarrow}
+\newcommand{\ilorazowy}[1]{#1/\!{_R}}
+\DeclarePairedDelimiter\set\{\}
+\ExplSyntaxOn
+\NewDocumentCommand{\op}{m}
+ {
+  \langle
+  \clist_set:Nn \l_tmpa_clist { #1 }
+  \clist_use:Nn \l_tmpa_clist {,\mspace{3mu plus 1mu minus 1mu}\allowbreak}
+  \rangle
+}
+\ExplSyntaxOff
+
+
+                                \begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                \section*{Sekcja 1} \smallskip
+                                {\Huge\bfseries Relacje} \bigskip \medskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{defr}{Definicja 1.1: Relacja}
+    Dane są dwa zbiory $A$ i $B$. \textbf{Relacją (dwuargumentową)} $R$ między elementami zbioru $A$ a elementami 
+    zbioru $B$ nazywamy dowolny podzbiór iloczynu kartezjańskiego $A\times B$ ($R\subset A\times B$).  
+\end{defr}
+
+Mówimy, że elementy $a\in A$ oraz $b\in B$ są ze sobą w relacji $R$ (ozn. $a\sim b$ lub $aRb$), 
+jeśli $\op{a,b}\in R$. \medskip
+
+Niech $R$ będzie relacją na niepustym zbiorze $A$. Mówimy, że:
+\begin{enumerate}[label=(\arabic*), nosep]
+    \item R jest \textbf{zwrotna} $\ifff (\forall a\in A)\ aRa$.
+    \item R jest \textbf{przeciwzwrotna} $\ifff(\forall a\in A)\ \lnot aRa$.
+    \item R jest \textbf{przechodnia} $\ifff(\forall a,b,c\in A)(aRb \land bRc \imp aRc)$.
+    \item R jest \textbf{symetryczna} $\ifff(\forall a,b\in A)(aRb\imp bRa)$.
+    \item R jest \textbf{słabo antysymetryczna} $\ifff(\forall a,b\in A)(aRb\land bRa\imp a=b)$.
+    \item R jest \textbf{silnie antysymetryczna} $\ifff(\forall a,b\in A)\ \lnot(aRb\land bRa)\ifff(\forall a,b\in A)
+    (aRb\imp\lnot bRa)$.
+    \item R jest \textbf{spójna} $\ifff(\forall a,b\in A)(aRb\lor bRa)$.
+\end{enumerate} \smallskip
+
+Relację silnie antysymetryczną nazywamy również relacją asymetryczną bądź to
+przeciwsymetryczną.
+
+\begin{defr}{Definicja 1.2: Relacja równoważności}
+    Niech $R\subset A\times A$. Gdy relacja $R$ jest \textbf{zwrotna}, \textbf{symetryczna} i \textbf{przechodnia}, to mówimy, że
+    jest \textbf{relacją równoważności}.
+\end{defr}
+
+\begin{defr}{Definicja 1.3: Klasa równoważności}
+    Niech $R$ będzie relacją równoważności na zbiorze $A$.\textbf{ Klasą równoważności (abstrakcji)} elementu $a\in A$ względem
+    relacji $R$ nazywamy zbiór
+    \begin{equation*}
+        [a]_R=\set{x\in A:xRa}.
+    \end{equation*}
+\end{defr}
+
+\begin{defr}{Definicja 1.4: Zbiór ilorazowy}
+    Zbiór wszystkich klas abstrakcji (względem) relacji równoważności $R$, czyli zbiór
+    \begin{equation*}
+        \ilorazowy{A}=\set{[a]_R:a\in A},
+    \end{equation*}
+    nazywamy \textbf{zbiorem ilorazowym} relacji $R$.
+\end{defr}
+
+\begin{twier}{Twierdzenia o klasach równoważności 1.1}
+    Niech $R$ będzie relacją równoważności na zbiorze $A$. Wówczas mamy:
+    \begin{enumerate}[label=(\roman*)]
+        \item $(\forall a\in A)\ a\in [a]_R$ $\leftarrow$ ze zwrotności $R$
+        \item $(\forall a,b\in A)(a\in [b]_R\ifff b\in [a]_R)$ $\leftarrow$ z symetryczności $R$
+        \item $(\forall a,b\in A)(a\in [b]_R\ifff [a]_R=[b]_R)$
+    \end{enumerate}
+\end{twier}
+
+\begin{defr}{Definicja 1.5: Relacje porządku częściowego}
+    Relację $\preceq$ na zbiorze $A$ nazywamy \textbf{porządkiem częściowym 
+    \textcolor{darkred}{słabym (nieostrym)}} na zbiorze $A$, jeśli jest \textbf{zwrotna},
+    \textbf{przechodnia} i \textbf{słabo antysymetryczna}. \\ \smallskip
+    Relację $\prec$ na zbiorze $A$ nazywamy \textbf{porządkiem częściowym \textcolor{darkred}{ostrym}} na
+    zbiorze $A$, jeśli jest \textbf{przeciwzwrotna} i \textbf{przechodnia}.
+\end{defr}
+
+Na wykładzie stwierdzono, iż ostry porządek częściowy jest również asymetryczny. Jednak fakt ten wynika
+już z przeciwzwrotności i przechodniości porządku, co można prosto wykazać.
+
+\begin{proof}
+    Załóżmy, że relacja $\prec$ na zbiorze $A$ jest przeciwzwrotna i przechodnia. Weżmy $a, b\in A$,
+    wówczas z przechodniości
+    \begin{equation*}
+        a \prec b \land b \prec a \imp a \prec a \ifff \lnot(a \prec b \land b \prec a) \lor a \prec a.
+    \end{equation*}
+    Jednak z przeciwzwrotności $\prec$ wiemy, iż zdanie $a\prec a$ jest fałszywe dla dowolnego $a$ ze
+    zbioru $A$, dlatego też
+    \begin{equation*}
+        \lnot(a \prec b \land b \prec a) \lor a \prec a \imp \lnot(a \prec b \land b \prec a)\ifff
+        \lnot (a \prec b) \lor \lnot (b \prec a) \ifff (a\prec b\imp \lnot(b\prec a)).
+    \end{equation*}
+\end{proof}
+
+\begin{defr}{Definicja 1.6: Liniowy porządek}
+    Porządek częściowy $\preceq$ (lub $\prec$) na zbiorze $A$ nazywamy \textbf{porządkiem liniowym (pełnym)}
+    na zbiorze $A$, jeżeli jest \textbf{spójny}.
+\end{defr}
+
+Spójność dla porządku ostrego formułujemy następująco: $(\forall a,b\in A)(a\ne b\imp a\prec b \lor b\prec a)$.
+
+\begin{defr}{Definicja 1.7: Ograniczenia i kresy}
+    Dany jest zbiór $A$ z porządkiem liniowym $\preceq$. Niech $B\subset A$ i $c\in A$. Mówimy, że:
+    \begin{enumerate}[label=\Roman*.]
+        \item $c$ jest \textbf{ograniczeniem górnym} zbioru $B$, jeśli $(\forall b\in B)\ b \preceq c.$
+        \item $c$ jest \textbf{ograniczeniem dolnym} zbioru $B$, jeśli $(\forall b\in B)\ c \preceq b.$
+        \item $c$  jest \textbf{kresem górnym} zbioru B, jeśli:
+            \begin{enumerate}
+            \item jest ograniczeniem górnym.
+            \item dla dowolnie innego ograniczenia górnego $c'$ zbioru $B$ zachodzi $c\preceq c'$.
+            \end{enumerate}
+        \item $c$  jest \textbf{kresem dolnym} zbioru B, jeśli:
+            \begin{enumerate}
+            \item jest ograniczeniem dolnym.
+            \item dla dowolnie innego ograniczenia dolnego $c'$ zbioru $B$ zachodzi $c'\preceq c$.
+            \end{enumerate}
+    \end{enumerate}
+\end{defr}
+
+Powyższe pojęcia można by było zdefiniować dla częściowo uporządkowanego zbioru $A$, aczkolwiek na
+wykładzie pojawiła się węższa definicja ze zbiorem liniowo uporządkowanym.
+
+\begin{twier}{Twierdzenie 1.2}
+    Dane są dwie relacje $\preceq$ i $\prec$ w zbiorze $A$. Jeśli spełniają one następujące warunki:
+    \begin{enumerate}[label=(\alph*)]
+        \item $(\forall a,b\in A)(a\preceq b \ifff a\prec b \lor a=b)$
+        \item $(\forall a,b\in A)(a\prec b \ifff a\preceq b \land a\ne b)$,
+    \end{enumerate}
+    wówczas $\preceq$ jest porządkiem słabym, wtedy i tylko wtedy gdy $\prec$ jest porządkiem ostrym. 
+\end{twier}
+
+\begin{defr}{Definicja 1.8: Relacja odwrotna}
+    Niech $R\subset A\times B$. \textbf{Relacją odwrotną} $R^{-1}$ do relacji $R$ nazywamy zbiór
+    \begin{equation*}
+        R^{-1}:=\set{\op{a,b}\in A\times B:\op{a,b}\in R}.
+    \end{equation*}
+    Innymi słowy $(\forall a\in A)(\forall b\in B)(bR^{-1}a\ifff aRb)$.
+\end{defr}
+
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                \section*{Sekcja 2} \smallskip
+                                {\Huge\bfseries Funkcje} \bigskip \medskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{defr}{Definicja 2.1: Funkcja}
+    Relację $f$ między elementami zbioru $A$ i elementami zbioru $B$ nazywamy \textbf{funkcją}, jeżeli
+    \begin{equation*}
+        (\forall x\in A)(\exists! y\in B)\ \op{x,y}\in f.
+    \end{equation*}
+    Powyższe zdanie można zapisać równoważnie jako
+    \begin{equation*}
+        (\forall x\in A)(\exists y\in B)\ \op{x,y}\in f\ \land\ ((\forall x\in A)(\forall y_1,y_2\in B)
+        (\op{x,y_1}\in f\land \op{x,y_2}\in f\imp y_1=y_2)).
+    \end{equation*}
+\end{defr}
+
+\begin{defr}{Definicja 2.2: Injekcja}
+    Relację funkcyjną $f\subset A\times B$ nazywamy \textbf{injekcją} (różnowartościową), jeżeli
+    \begin{gather*}
+        (\forall x_1,x_2\in A)(f(x_1)=f(x_2)\imp x_1=x_2)\text{, czyli równoważnie}\\
+        (\forall x_1,x_2\in A)(\forall y\in B)(\op{x_1,y}\in f \land \op{x_2,y}\in f\imp x_1=x_2).
+    \end{gather*}
+\end{defr}
+
+\begin{defr}{Definicja 2.3: Surjekcja}
+    Mówimy, że relacja funkcyjna $f\subset A\times B$ jest ze zbioru $A$ \textbf{na} zbiór $B$, jeśli
+    \begin{equation*}
+        (\forall y\in B)(\exists x\in A)\ y=f(x)\text{, czyli }(\forall y\in B)(\exists x\in A)\ 
+        \op{x,y}\in f.
+    \end{equation*}
+    Funkcję taką nazywamy też \textbf{surjekcją}.
+\end{defr}
+
+\begin{defr}{Definicja 2.4: Bijekcja}
+    Relację funkcyjną, która jest zarówno injekcją jak i surjekcją nazywamy \textbf{bijekcją}.
+\end{defr}
+
+\begin{defr}{Definicja 2.5: Funkcja odwrotna}
+    Jeśli $f:A\rightarrow B$ jest bijekcją, to \textbf{funkcję odwrotną} do $f$
+    jest funkcja $f^{-1}:B\rightarrow A$, taka że
+    \begin{equation*}
+        (\forall x\in A)(\forall y\in B)(\op{y,x}\in f^{-1}\ifff \op{x,y}\in f)
+    \end{equation*}
+\end{defr}
+
+\begin{twier}{Twierdzenie 2.1}
+    Jeżeli funkcja jest bijekcja, to posiada funkcję odwrotną, 
+    która również jest bijekcją
+\end{twier}
+
+\begin{defr}{Definicja 2.6: Złożenie Funkcji}
+    Niech $f:A\to B$, $g:B\to C$ i $x\in A$. \textbf{Złożeniem funkcji} $f$ z funkcją $g$ nazywamy
+    funkcję $g\circ f:A\to C$, określoną wzorem $(g\circ f)(x)=g(f(x))$.
+\end{defr}
+
+Wyrażenie $(g\circ f)(x)=g(f(x))$ można zapisać alternatywnie jako:
+\begin{equation*}
+    (\forall x\in A)(\forall z\in C)\ \op{x,z}\in g\circ f \ifff (\exists y\in B)
+    (\op{x,y}\in f\land \op{y,z}\in g).
+\end{equation*}
+
+\begin{defr}{Definicja 2.7: Funkcja identycznościowa}
+    Dla dowolnego niepustego zbioru $A$ możemy określić \textbf{funkcję identycznościową}
+    na zbiorze $A$ (identyczność na zbiorze $A$) następująco:
+    \begin{equation*}
+        id_A:A\to A,\quad (\forall x\in A)\ id_A(x)=x.
+    \end{equation*}
+\end{defr}
+
+\begin{twier}{Twierdzenie 2.2}
+    Jeśli $f:A\to B$ i $f^{-1}:B\to A$, to $f^{-1}\circ f:A\to A$ jest identycznością na
+    zbiorze $A$.
+\end{twier}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                \end{document}
