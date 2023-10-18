@@ -53,6 +53,7 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Po}{\mathcal{P}}
 \newcommand{\ifff}{\Leftrightarrow}
 \newcommand{\imp}{\Rightarrow}
 \newcommand{\ilorazowy}[1]{#1/\!{_R}}
@@ -161,17 +162,17 @@ już z przeciwzwrotności i przechodniości porządku, co można prosto wykazać
 
 Spójność dla porządku ostrego formułujemy następująco: $(\forall a,b\in A)(a\ne b\imp a\prec b \lor b\prec a)$.
 
-\begin{defr}{Definicja 1.7: Ograniczenia i kresy}
+\begin{defr}{Definicja 1.7: Elementy wyróżnione}
     Dany jest zbiór $A$ z porządkiem liniowym $\preceq$. Niech $B\subset A$ i $c\in A$. Mówimy, że:
     \begin{enumerate}[label=\Roman*.]
         \item $c$ jest \textbf{ograniczeniem górnym} zbioru $B$, jeśli $(\forall b\in B)\ b \preceq c.$
         \item $c$ jest \textbf{ograniczeniem dolnym} zbioru $B$, jeśli $(\forall b\in B)\ c \preceq b.$
-        \item $c$  jest \textbf{kresem górnym} zbioru B, jeśli:
+        \item $c$  jest \textbf{kresem górnym} (ozn. $\sup{A}$) zbioru B, jeśli:
             \begin{enumerate}
             \item jest ograniczeniem górnym.
             \item dla dowolnie innego ograniczenia górnego $c'$ zbioru $B$ zachodzi $c\preceq c'$.
             \end{enumerate}
-        \item $c$  jest \textbf{kresem dolnym} zbioru B, jeśli:
+        \item $c$  jest \textbf{kresem dolnym} (ozn. $\inf{A}$) zbioru B, jeśli:
             \begin{enumerate}
             \item jest ograniczeniem dolnym.
             \item dla dowolnie innego ograniczenia dolnego $c'$ zbioru $B$ zachodzi $c'\preceq c$.
@@ -241,7 +242,7 @@ wykładzie pojawiła się węższa definicja ze zbiorem liniowo uporządkowanym.
 \end{defr}
 
 \begin{defr}{Definicja 2.5: Funkcja odwrotna}
-    Jeśli $f:A\rightarrow B$ jest bijekcją, to \textbf{funkcję odwrotną} do $f$
+    Jeśli $f:A\rightarrow B$ jest bijekcją, to \textbf{funkcją odwrotną} do $f$
     jest funkcja $f^{-1}:B\rightarrow A$, taka że
     \begin{equation*}
         (\forall x\in A)(\forall y\in B)(\op{y,x}\in f^{-1}\ifff \op{x,y}\in f)
@@ -249,8 +250,11 @@ wykładzie pojawiła się węższa definicja ze zbiorem liniowo uporządkowanym.
 \end{defr}
 
 \begin{twier}{Twierdzenie 2.1}
-    Jeżeli funkcja jest bijekcja, to posiada funkcję odwrotną, 
-    która również jest bijekcją
+    \begin{enumerate}[label=(\arabic*), nosep]
+        \item Jeżeli funkcja jest bijekcją, to posiada funkcję odwrotną, 
+        która również jest bijekcją
+        \item Jeżeli funkcja jest odwracalna, to oznacza, że jest bijekcją.
+    \end{enumerate}
 \end{twier}
 
 \begin{defr}{Definicja 2.6: Złożenie Funkcji}
@@ -264,6 +268,11 @@ Wyrażenie $(g\circ f)(x)=g(f(x))$ można zapisać alternatywnie jako:
     (\op{x,y}\in f\land \op{y,z}\in g).
 \end{equation*}
 
+\begin{twier}{Twierdzenie 2.2}
+    Dla dowolnych funkcji $f$, $g$, $h$ zachodzi równość
+     $(f\circ g)\circ h= f\circ (g\circ h)$.
+\end{twier}
+
 \begin{defr}{Definicja 2.7: Funkcja identycznościowa}
     Dla dowolnego niepustego zbioru $A$ możemy określić \textbf{funkcję identycznościową}
     na zbiorze $A$ (identyczność na zbiorze $A$) następująco:
@@ -272,15 +281,53 @@ Wyrażenie $(g\circ f)(x)=g(f(x))$ można zapisać alternatywnie jako:
     \end{equation*}
 \end{defr}
 
-\begin{twier}{Twierdzenie 2.2}
+\begin{twier}{Twierdzenie 2.3}
     Jeśli $f:A\to B$ i $f^{-1}:B\to A$, to $f^{-1}\circ f:A\to A$ jest identycznością na
     zbiorze $A$.
 \end{twier}
 
+\newpage
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                \section*{Sekcja 3}\smallskip
+                                {\Huge\bfseries Równoliczność} \bigskip \medskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{defr}{Definicja 3.1: Równoliczność}
+    Mówimy, że zbiory $A$ i $B$ są \textbf{równoliczne} (ozn. $|A|=|B|$, $A\sim B$),
+    gdy istnieje bijekcja $f:A\to B$.
+\end{defr}
 
+Równoliczność \textit{ma własności relacji równoważności} 
+(jest zwrotna, symetryczna i przechodnia)
+i faktycznie nią jest, gdy ograniczymy relację równoliczności do zbioru $\Po(U)$
+\footnote{$\Po(U)$ to zbiór potęgowy pewnego zbioru $U$, czyli zbiór wszystkich
+podzbiorów $U$. Równoliczność ograniczamy do jakiegoś
+zbioru potęgowego, bo jej dziedzina i obraz nie są normalnie zbiorami,
+ więc nie byłaby ona relacją równoważności w ścisłym sensie.}. 
+ Jeśli $A, B\in \Po(U)$ i $R$ będzie symbolizować relację równoliczności, 
+ to możemy przyjąć, iż $|A|=|B|$ oznacza, że
+$[A]_R=[B]_R$.
+
+\begin{defr}{Definicja 3.2: Zbiór skończony}
+    O zbiorze $A$ mówimy, że jest \textbf{skończony}, jeżeli jest pusty lub równoliczny
+    jakiemuś zbiorowi postaci $\set{1,\ldots,n}_{n\in\N}$. Piszemy wówczas, że $|A|=n$
+\end{defr}
+
+\begin{defr}{Definicja 3.3: Zbiór przeliczalny}
+    Mówimy, że zbiór $A$ jest \textbf{przeliczalny}, jeżeli jest równoliczny zbiorowi
+    $\N$. Piszemy wówcza, że $|A|=\aleph_0$.
+\end{defr}
+
+\begin{defr}{Definicja 3.4: Zbiór nieprzeliczalny}
+    Mówimy, że zbiór $A$ jest \textbf{nieprzeliczalny}, jeżeli nie jest przeliczalny,
+    ani skończony.
+\end{defr}
+
+Zbiór liczb rzeczywistych jest zbiorem nieprzeliczalnym. |$\R$| oznaczamy 
+jako $\mathfrak{c}$ lub $2^{\aleph_0}$ i nazywamy \textit{continuum}. Continuum jest
+większe od mocy $\N$.
 
 
 
