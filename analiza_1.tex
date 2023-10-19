@@ -15,6 +15,7 @@
 \usepackage{kpfonts}
 \usepackage[T1]{fontenc}
 \usepackage{xcolor}
+\usepackage{hyperref}
 
 %%%%%%%%%%
 % KOLORY %
@@ -163,7 +164,7 @@ już z przeciwzwrotności i przechodniości porządku, co można prosto wykazać
 Spójność dla porządku ostrego formułujemy następująco: $(\forall a,b\in A)(a\ne b\imp a\prec b \lor b\prec a)$.
 
 \begin{defr}{Definicja 1.7: Elementy wyróżnione}
-    Dany jest zbiór $A$ z porządkiem liniowym $\preceq$. Niech $B\subset A$ i $c\in A$. Mówimy, że:
+    Dany jest zbiór $A$ z porządkiem częściowym $\preceq$. Niech $B\subset A$ i $c\in A$. Mówimy, że:
     \begin{enumerate}[label=\Roman*.]
         \item $c$ jest \textbf{ograniczeniem górnym} zbioru $B$, jeśli $(\forall b\in B)\ b \preceq c.$
         \item $c$ jest \textbf{ograniczeniem dolnym} zbioru $B$, jeśli $(\forall b\in B)\ c \preceq b.$
@@ -177,11 +178,26 @@ Spójność dla porządku ostrego formułujemy następująco: $(\forall a,b\in A
             \item jest ograniczeniem dolnym.
             \item dla dowolnie innego ograniczenia dolnego $c'$ zbioru $B$ zachodzi $c'\preceq c$.
             \end{enumerate}
+        \item $c$ jest elementem \textbf{maksymalnym} zbioru $B$, jeśli $\lnot(\exists b\in B)\
+        c\prec b$.
+        \item $c$ jest elementem \textbf{największym} zbioru $B$, jeśli $(\forall b\in B)\ b 
+        \preceq c$.
+        \item $c$ jest elementem \textbf{minimalnym} zbioru $B$, jeśli $\lnot(\exists b\in B)\ 
+        b\prec c$.
+        \item $c$ jest elementem \textbf{najmniejszym} zbioru $B$, jeśli $(\forall b\in B)\ 
+        c\preceq b$.
     \end{enumerate}
 \end{defr}
 
-Powyższe pojęcia można by było zdefiniować dla częściowo uporządkowanego zbioru $A$, aczkolwiek na
-wykładzie pojawiła się węższa definicja ze zbiorem liniowo uporządkowanym.
+Powyższe pojęcia\footnote{Na wykładzie pojawiły się wszystkie wymienione terminy, z
+wyjątkiem elementu najmniejszego i największego. Zapewne dlatego, że dla porządku liniowego, który
+został przyjęty, nie ma rozróżnienia między elementem największym a maksymalnym.}
+na wykładzie zostały zdefiniowane tylko dla liniowo uporządkowanego zbioru $A$,
+ale można je bez problemu uogólnić na zbiór z porządkiem częściowym, co też zrobiłem. Warto dodać, iż dla porządków
+liniowych element największy i maksymalny znaczą to samo. Analogicznie jest z elementem najmniejszym
+i minimalnym. Sprawy mają się inaczej w przypadku porządków częściowych. Oczywiście, element
+największy jest również i maksymalny. Jednak implikacja w drugą stronę już nie zawsze zachodzi.
+Obrazem tego stanu rzeczy są podane \href{https://calcworkshop.com/wp-content/uploads/hasse-diagram-find-the-maximal-minimal-least-and-greatest.png}{diagramy Hassego}.
 
 \begin{twier}{Twierdzenie 1.2}
     Dane są dwie relacje $\preceq$ i $\prec$ w zbiorze $A$. Jeśli spełniają one następujące warunki:
@@ -328,6 +344,7 @@ $[A]_R=[B]_R$.
 Zbiór liczb rzeczywistych jest zbiorem nieprzeliczalnym. |$\R$| oznaczamy 
 jako $\mathfrak{c}$ lub $2^{\aleph_0}$ i nazywamy \textit{continuum}. Continuum jest
 większe od mocy $\N$.
+
 
 
 
