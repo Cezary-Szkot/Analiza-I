@@ -16,6 +16,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{xcolor}
 \usepackage{hyperref}
+\usepackage{graphicx}
 
 %%%%%%%%%%
 % KOLORY %
@@ -178,13 +179,17 @@ Spójność dla porządku ostrego formułujemy następująco: $(\forall a,b\in A
             \item jest ograniczeniem dolnym.
             \item dla dowolnie innego ograniczenia dolnego $c'$ zbioru $B$ zachodzi $c'\preceq c$.
             \end{enumerate}
-        \item $c$ jest elementem \textbf{maksymalnym} zbioru $B$, jeśli $\lnot(\exists b\in B)\
+        \item $c$ jest elementem \textbf{maksymalnym} zbioru $B$, jeśli $c\in B \land
+        \lnot(\exists b\in B)\
         c\prec b$.
-        \item $c$ jest elementem \textbf{największym} zbioru $B$, jeśli $(\forall b\in B)\ b 
+        \item $c$ jest elementem \textbf{największym} zbioru $B$, jeśli $c\in B \land
+        (\forall b\in B)\ b 
         \preceq c$.
-        \item $c$ jest elementem \textbf{minimalnym} zbioru $B$, jeśli $\lnot(\exists b\in B)\ 
+        \item $c$ jest elementem \textbf{minimalnym} zbioru $B$, jeśli $c\in B \land
+        \lnot(\exists b\in B)\ 
         b\prec c$.
-        \item $c$ jest elementem \textbf{najmniejszym} zbioru $B$, jeśli $(\forall b\in B)\ 
+        \item $c$ jest elementem \textbf{najmniejszym} zbioru $B$, jeśli $c\in B \land
+        (\forall b\in B)\ 
         c\preceq b$.
     \end{enumerate}
 \end{defr}
@@ -234,9 +239,34 @@ Obrazem tego stanu rzeczy są podane \href{https://calcworkshop.com/wp-content/u
         (\forall x\in A)(\exists y\in B)\ \op{x,y}\in f\ \land\ ((\forall x\in A)(\forall y_1,y_2\in B)
         (\op{x,y_1}\in f\land \op{x,y_2}\in f\imp y_1=y_2)).
     \end{equation*}
+    \begin{itemize}
+        \item \textbf{Dziedziną} (ozn. $dom(f)$ lub $D_f$) funkcji $f$ nazywamy zbiór $A$.
+        \item \textbf{Przeciwdziedziną} (ozn. $\rotatebox[origin=c]{180}{$D$}_f$)
+        funkcji $f$ nazywamy zbiór $B$.
+        \item \textbf{Zbiorem wartości} (ozn. $rng(f)$ lub $R_f$) funkcji $f$ nazywamy zbiór \\
+        $R_f = \set{y\in B: (\exists x\in A)\ \op{x,y}\in f}\subset B$.
+    \end{itemize}
 \end{defr}
 
-\begin{defr}{Definicja 2.2: Injekcja}
+\begin{defr}{Definicja 2.2: Obraz i przeciwobraz}
+    Niech $f:A\to B$ oraz $C\subset A$ i $D\subset B$.
+    \begin{enumerate}[label=(\arabic*)]
+        \item \textbf{Obrazem} zbioru $C$ względem funkcji $f$ nazywamy zbiór
+        \begin{equation*}
+            f[C]=\set{y\in B: (\exists x\in C)\ y=f(x)}=\set{f(x):x\in C}.
+        \end{equation*}
+        \item \textbf{Przeciwobrazem} zbioru $D$ względem funkcji $f$ nazywamy zbiór
+        \begin{equation*}
+            f^{-1}[D]=\set{x\in A:f(x)\in D}.
+        \end{equation*}
+    \end{enumerate}
+\end{defr}
+
+Supremum funkcji $f$ na zbiorze $C$ $\sup_{x\in C}f(x)$ jest kresem górnym obrazu zbioru $C$
+względem niej. Analogicznie definiujemy $\inf_{x\in C}f(x)$, $\max_{x\in C}f(x)$ i
+$\min_{x\in C}f(x)$.
+
+\begin{defr}{Definicja 2.3: Injekcja}
     Relację funkcyjną $f\subset A\times B$ nazywamy \textbf{injekcją} (różnowartościową), jeżeli
     \begin{gather*}
         (\forall x_1,x_2\in A)(f(x_1)=f(x_2)\imp x_1=x_2)\text{, czyli równoważnie}\\
@@ -244,7 +274,7 @@ Obrazem tego stanu rzeczy są podane \href{https://calcworkshop.com/wp-content/u
     \end{gather*}
 \end{defr}
 
-\begin{defr}{Definicja 2.3: Surjekcja}
+\begin{defr}{Definicja 2.4: Surjekcja}
     Mówimy, że relacja funkcyjna $f\subset A\times B$ jest ze zbioru $A$ \textbf{na} zbiór $B$, jeśli
     \begin{equation*}
         (\forall y\in B)(\exists x\in A)\ y=f(x)\text{, czyli }(\forall y\in B)(\exists x\in A)\ 
@@ -253,11 +283,11 @@ Obrazem tego stanu rzeczy są podane \href{https://calcworkshop.com/wp-content/u
     Funkcję taką nazywamy też \textbf{surjekcją}.
 \end{defr}
 
-\begin{defr}{Definicja 2.4: Bijekcja}
+\begin{defr}{Definicja 2.5: Bijekcja}
     Relację funkcyjną, która jest zarówno injekcją jak i surjekcją nazywamy \textbf{bijekcją}.
 \end{defr}
 
-\begin{defr}{Definicja 2.5: Funkcja odwrotna}
+\begin{defr}{Definicja 2.6: Funkcja odwrotna}
     Jeśli $f:A\rightarrow B$ jest bijekcją, to \textbf{funkcją odwrotną} do $f$
     jest funkcja $f^{-1}:B\rightarrow A$, taka że
     \begin{equation*}
@@ -273,7 +303,7 @@ Obrazem tego stanu rzeczy są podane \href{https://calcworkshop.com/wp-content/u
     \end{enumerate}
 \end{twier}
 
-\begin{defr}{Definicja 2.6: Złożenie Funkcji}
+\begin{defr}{Definicja 2.7: Złożenie Funkcji}
     Niech $f:A\to B$, $g:B\to C$ i $x\in A$. \textbf{Złożeniem funkcji} $f$ z funkcją $g$ nazywamy
     funkcję $g\circ f:A\to C$, określoną wzorem $(g\circ f)(x)=g(f(x))$.
 \end{defr}
@@ -289,7 +319,7 @@ Wyrażenie $(g\circ f)(x)=g(f(x))$ można zapisać alternatywnie jako:
      $(f\circ g)\circ h= f\circ (g\circ h)$.
 \end{twier}
 
-\begin{defr}{Definicja 2.7: Funkcja identycznościowa}
+\begin{defr}{Definicja 2.8: Funkcja identycznościowa}
     Dla dowolnego niepustego zbioru $A$ możemy określić \textbf{funkcję identycznościową}
     na zbiorze $A$ (identyczność na zbiorze $A$) następująco:
     \begin{equation*}
@@ -326,15 +356,18 @@ zbioru potęgowego, bo jej dziedzina i obraz nie są normalnie zbiorami,
  to możemy przyjąć, iż $|A|=|B|$ oznacza, że
 $[A]_R=[B]_R$.
 
-\begin{defr}{Definicja 3.2: Zbiór skończony}
+\begin{defr}{Definicja 3.2: Zbiór skończony i nieskończony}
     O zbiorze $A$ mówimy, że jest \textbf{skończony}, jeżeli jest pusty lub równoliczny
-    jakiemuś zbiorowi postaci $\set{1,\ldots,n}_{n\in\N}$. Piszemy wówczas, że $|A|=n$
+    jakiemuś zbiorowi postaci $\set{1,\ldots,n}_{n\in\N}$. Piszemy wówczas, że $|A|=n$.
+    Zbiór, który nie jest skończony nazywamy \textbf{nieskończonym}.
 \end{defr}
 
 \begin{defr}{Definicja 3.3: Zbiór przeliczalny}
     Mówimy, że zbiór $A$ jest \textbf{przeliczalny}, jeżeli jest równoliczny zbiorowi
-    $\N$. Piszemy wówcza, że $|A|=\aleph_0$.
+    $\N$. Piszemy wówczas, że $|A|=\aleph_0$. 
 \end{defr}
+
+Zbiór nazywamy \textit{co najwyżej przeliczalnym}, jeśli jest on skończony lub przeliczalny.
 
 \begin{defr}{Definicja 3.4: Zbiór nieprzeliczalny}
     Mówimy, że zbiór $A$ jest \textbf{nieprzeliczalny}, jeżeli nie jest przeliczalny,
@@ -344,6 +377,14 @@ $[A]_R=[B]_R$.
 Zbiór liczb rzeczywistych jest zbiorem nieprzeliczalnym. |$\R$| oznaczamy 
 jako $\mathfrak{c}$ lub $2^{\aleph_0}$ i nazywamy \textit{continuum}. Continuum jest
 większe od mocy $\N$.
+
+\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                \section*{Sekcja 4} \smallskip
+                                {\Huge\bfseries Liczby rzeczywiste} \bigskip \medskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
