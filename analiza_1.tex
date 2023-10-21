@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{geometry} \geometry{margin=85pt}
 \usepackage[polish]{babel}
-\usepackage{polski}
+\usepackage[OT4]{fontenc}
 \usepackage[document]{ragged2e}
 \usepackage{amsmath}
 \usepackage{amsthm}
@@ -18,6 +18,12 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 
+%%%%%%%%%%%%%%%
+% TWIERDZENIA $
+%%%%%%%%%%%%%%%
+
+\newtheorem*{dedekind}{{\color{darkred} Aksjomat ciągłości (Dedekinda)}}
+
 %%%%%%%%%%
 % KOLORY %
 %%%%%%%%%%
@@ -25,6 +31,8 @@
 \definecolor{col1}{HTML}{ffcccc}
 \definecolor{col2}{HTML}{ccccff}
 \definecolor{darkred}{HTML}{8B0000}
+\definecolor{goldenrod}{HTML}{FFDF42}
+\definecolor{lightgoldenrod}{HTML}{fff0a5}
 
 %%%%%%%%%
 % RAMKI %
@@ -46,6 +54,15 @@
   attach boxed title to top left={yshift=-\tcboxedtitleheight/2, xshift=10pt},
   boxed title style={tile,size=small,left=5pt,right=5pt, 
   colback=col2,before upper=\strut},
+  title=#2,#1}
+
+\newtcolorbox{wn}[2][]{%
+  enhanced,colback=white,colframe=white,coltitle=black,
+  sharp corners,boxrule=1.5pt,
+  fonttitle=\bfseries,top=13pt,
+  attach boxed title to top left={yshift=-\tcboxedtitleheight/2, xshift=0pt},
+  boxed title style={tile,size=small,left=5pt,right=5pt, 
+  colback=lightgoldenrod,before upper=\strut},
   title=#2,#1}
 
 %%%%%%%%%%%
@@ -304,8 +321,19 @@ $\min_{x\in C}f(x)$.
 \end{twier}
 
 \begin{defr}{Definicja 2.7: Złożenie Funkcji}
-    Niech $f:A\to B$, $g:B\to C$ i $x\in A$. \textbf{Złożeniem funkcji} $f$ z funkcją $g$ nazywamy
+    \hfill \texttt{WERSJA I}\\ \smallskip
+    Niech $f:A\to B$, $g:B\to C$ (wystarczy nawet założyć, że
+    $g:B_1\to C$, jesli $B\subset B_1$)
+    i $x\in A$. \textbf{Złożeniem funkcji} $f$ z funkcją $g$ nazywamy
     funkcję $g\circ f:A\to C$, określoną wzorem $(g\circ f)(x)=g(f(x))$.
+    \\ \medskip
+    \hfill \texttt{WERSJA II}\\ \smallskip
+    \textbf{Złożeniem funkcji} $f$ i $g$ nazywamy funkcję $g\circ f$
+    zdefiniowaną wzorem
+    \begin{equation*}
+        g\circ f=\set{\op{x,z}\in D_f\times R_g:\exists y[\op{x,y}\in f
+        \land \op{y,z}\in g]}.
+    \end{equation*}
 \end{defr}
 
 Wyrażenie $(g\circ f)(x)=g(f(x))$ można zapisać alternatywnie jako:
@@ -313,6 +341,19 @@ Wyrażenie $(g\circ f)(x)=g(f(x))$ można zapisać alternatywnie jako:
     (\forall x\in A)(\forall z\in C)\ \op{x,z}\in g\circ f \ifff (\exists y\in B)
     (\op{x,y}\in f\land \op{y,z}\in g).
 \end{equation*}
+
+Zauważmy różnicę między tymi dwiema wersjami
+\footnote{Tylko wersja pierwsza pojawiła się na wykładzie. Ta druga jest
+tylko moim dodatkiem. Podaję ją tutaj, bo chociaż nie pojawiła się w czasie
+wykładu, to posługiwaliśmy się jej wyróżniającą własnością na ćwiczeniach.}
+definicji złożenia funkcji.
+Pierwsza, częściej spotykana, zakłada że $R_f\subset D_g$, skąd wynika, że
+$D_{g\circ f}=D_f$. Natomiast według drugiej definicji, złożenie $g\circ f$
+funkcji $f$ i $g$ ma następujące własności.
+\begin{enumerate}[label=(\alph*)]
+    \item $D_{g\circ f}=\set{x\in D_f:f(x)\in D_g}$,
+    \item $(\forall x\in D_{g\circ f})\ (g\circ f)(x)=g(f(x))$.
+\end{enumerate} 
 
 \begin{twier}{Twierdzenie 2.2}
     Dla dowolnych funkcji $f$, $g$, $h$ zachodzi równość
@@ -331,6 +372,20 @@ Wyrażenie $(g\circ f)(x)=g(f(x))$ można zapisać alternatywnie jako:
     Jeśli $f:A\to B$ i $f^{-1}:B\to A$, to $f^{-1}\circ f:A\to A$ jest identycznością na
     zbiorze $A$.
 \end{twier}
+
+\begin{defr}{Definicja 2.9: Obcięcie i przedłużenie funkcji}
+    Niech $f:A\to B$.
+    \begin{enumerate}[label=(\arabic*)]
+        \item Niech $C\subset X$. \textbf{Obcięciem funkcji} $f$ do zbioru
+        $C$ nazywamy funkcję $f|_C:C\to B$,  $(f|_C)(x)=f(x)$.
+        \item Funkcję $g:C\to B$ nazywamy \textbf{przedłużeniem funkcji}
+        $f$, jeśli $A\subset C$ oraz $(\forall x\in A)\ f(x)=g(x)$.
+    \end{enumerate}
+\end{defr}
+
+Zwróćmy uwagę, że daną funkcję $f$ można przedłużyć na dany właściwy nadzbiór
+jej dziedziny na różne sposoby. Zauważmy też, że funkcja jest zawsze przedłużeniem
+swojego obcięcia.
 
 \newpage
 
@@ -386,6 +441,121 @@ większe od mocy $\N$.
                                 {\Huge\bfseries Liczby rzeczywiste} \bigskip \medskip
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Dany jest zbiór liczb rzeczywistych \(\R\) z określonymi działaniami $+$ i $\cdot$
+oraz porządkiem liniowym $\le$.
+Aksjomaty teorii liczb rzeczywistych podzielimy na
+trzy kategorie: aksjomaty ciała przemiennego, aksjomaty porządku, oraz aksjomat
+ciągłości\footnote{Aksjomaty przepisałem ze skryptu Strzeleckiego, ponieważ
+były tam zapisane w trochę bardziej eleganckiej postaci.}.
+
+\subsection*{{\color{darkred} Aksjomaty ciała przemiennego}} 
+\begin{enumerate}[label=(\arabic*)]
+    \item \textbf{Przemienność dodawania}
+    \((\forall a,b\in\R)\ a+b=b+a\).
+    \item \textbf{Łączność dodawania}
+    \((\forall a,b,c\in\R)\ a+(b+c)=(a+b)+c\).
+    \item \textbf{Charakteryzacja zera}
+    \((\exists 0\in\R)(\forall a\in\R)\ a+0=a\).
+    \item \textbf{Istnienie elementów przeciwnych}
+    \((\forall a\in\R)(\exists -a\in\R)\ a+(-a)=0\).
+    \item \textbf{Przemienność mnożenia}
+    \((\forall a,b\in\R)\ a\cdot b=b\cdot a\).
+    \item  \textbf{Łączność mnożenia}
+    \((\forall a,b,c\in\R)\ a\cdot(b\cdot c)=(a\cdot b)\cdot c\).
+    \item \textbf{Charakteryzacja jedynki}
+    \((\exists 1\in\R)(\forall a\in\R)\ a\cdot 1=a\).
+    \item \textbf{Istnienie elementów odwrotnych}
+    \((\forall a\in\R)(\exists a^{-1}\in\R)\ a\cdot a^{-1}=1\).
+    \item \textbf{Rozdzielność mnożenia względem dodawania}
+    \((\forall a,b,c\in\R)\ a\cdot(b+c)=a\cdot b + a\cdot c\).
+\end{enumerate}
+
+\subsection*{{\color{darkred} Aksjomaty porządku}} 
+\begin{enumerate}[label=(\arabic*)]
+    \item \textbf{Prawo trichotomii}
+    \footnote{Aksjomat ten uwzględniamy, gdy przyjmujemy $(\R,+,\cdot,<)$
+    na wykładzie natomiast przyjęliśmy $(\R,+,\cdot,\le)$.}
+    \((\forall a,b\in\R)\) zachodzi \emph{dokładnie jedna} z trzech możliwości:
+    \begin{equation*}
+        a<b,\quad a=b,\quad b<a.
+    \end{equation*}
+    \item \textbf{Przechodniość}
+    \((\forall a,b,c\in\R)(a\le b\land b\le c\imp a\le c)\).
+    \item \textbf{Związki nierówności z działaniami}
+    \begin{enumerate}
+        \item \((\forall a,b,c\in\R)(a\le b\imp a+c\le b+c)\);
+        \item \((\forall a,b,c\in\R)(a\le b\land 0\le c\imp ac\le bc)\).
+    \end{enumerate}
+\end{enumerate} \smallskip
+
+\begin{dedekind}
+    \textit{Każdy niepusty, ograniczony z góry podzbiór} $A\subset\R$
+    \textit{ma kres górny} $M=\sup{A}\in\R$.
+\end{dedekind} \pagebreak
+
+\begin{twier}{Twierdzenie 4.1: Aksjomat Archimedesa}
+    Dla każdej pary dodatnich liczb rzeczywistych $a$ i $b$ istnieje liczba
+    naturalna $n$, taka że $a<nb$.
+\begin{equation*}
+    (\forall a,b\in\R_+)(\exists n\in\N)\ a<nb
+\end{equation*}
+\end{twier}
+
+Twierdzenie to, choć bywa tak zwyczajowo nazywane,
+na prawdę aksjomatem w arytmetyce nie jest,
+bo wynika z innych aksjomatów teorii liczb rzeczywistych. 
+
+\begin{defr}{Definicja 4.1: Przekrój Dedekinda}
+Podział zbioru liczb wymiernych na parę zbiorów $\op{A,B}$, spełniające
+warunki\footnote{Podane warunki różnią się swoją postacią,
+tym co były przedstawione na wykładzie, niemniej jednak są im równoważne.}:
+\begin{enumerate}[label=(\arabic*)]
+    \item $A\neq \emptyset \land B\neq \emptyset$,
+    \item $A\cup B=\Q$,
+    \item $A\cap B=\emptyset$
+    \item $(\forall a\in A)(\forall b\in B)\ a<b$.
+\end{enumerate}
+nazywamy \textbf{przekrojem Dedekinda} zbioru $\Q$. Zbiór $A$
+nazywany jest \textbf{klasą dolną} przekroju, a zbiór $B$
+\textbf{klasą górną}.
+\end{defr}
+
+Przekrój Dedekinda $\op{A,B}$ zdefiniowany w taki sposób może mieć jedną
+z trzech następujących postaci, w której: \smallskip
+\begin{enumerate}[nosep]
+    \item w zbiorze $A$ istnieje element największy,
+    \item w zbiorze $B$ istnieje element najmniejszy,
+    \item w zbiorze $A$ nie istnieje element największy i
+    w zbiorze $B$ nie istnieje element najmniejszy.
+\end{enumerate} \smallskip
+W trzecim przypadku przekrój wyznacza tzw. \textit{lukę}. 
+Aksjomat ciągłości w ujęciu przekrojowym, mówi o tym, że żaden
+z przekrojów Dedekinda zbioru $\R$ nie wyznacza luki.\smallskip
+
+Przekroje typu 1 i 2 nazywamy \textit{liczbami rzeczywistymi wymiernymi}.
+Dwa przekroje typu 1 i 2 mogą wyznaczać tę samą liczbę wymierną. Relację
+równoważności przekrojów zdefiniujemy poniżej. Natomiast przekrój
+$\op{A,B}$ wyznaczający lukę nazywamy \textit{liczbą rzeczywistą
+niewymierną}. \bigskip
+
+Zdefiniujmy relację równoważności $R$ przekrojów Dedekinda:
+\begin{equation*}
+    \op{A_1,B_2}\ R\ \op{A_2,B_2}\ifff A_1=A_2\ \lor\ \exists\max{A_1},
+    \min{B_2}(\max{A_1}=\min{B_2})\ \lor\ \exists\max{A_2},\min{B_1}
+    (\max{A_2}=\min{B_1}).
+\end{equation*}
+
+
+
+Nasze rozważania doprowadzają nas do \textit{\textbf{{\color{darkred} konstrukcji
+zbioru liczb rzeczywistych za pomocą przekrojów Dedekinda}}}\footnote{
+W tym miejscu notatki z liczb rzeczywistych na razie zakańczam. Dalsze
+wyprowadzenia operacji na liczbach rzeczywistych odkładam na czas bliższy
+terminowi egzaminu ustnego. Na kolosie zagadnienia te raczej nie będą potrzebne.
+}.
+\begin{equation*}
+    \R:=\ilorazowy{\set{\op{A,B}:\text{przekroje Dedekinda}}}
+\end{equation*}
 
 
 
