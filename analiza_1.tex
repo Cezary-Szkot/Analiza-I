@@ -69,6 +69,7 @@
 % KOMENDY %
 %%%%%%%%%%%
 
+\newcommand{\hquad}{\mkern9mu}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -76,6 +77,8 @@
 \newcommand{\ifff}{\Leftrightarrow}
 \newcommand{\imp}{\Rightarrow}
 \newcommand{\ilorazowy}[1]{#1/\!{_R}}
+\newcommand{\lin}[1]{\lim_{n\to\infty}{#1}}
+\newcommand{\arn}{\xrightarrow{n\to\infty}}
 \DeclarePairedDelimiter\set\{\}
 \ExplSyntaxOn
 \NewDocumentCommand{\op}{m}
@@ -86,6 +89,7 @@
   \rangle
 }
 \ExplSyntaxOff
+\newcommand{\seq}[1]{\set{#1_n}_{n\in\N}}
 
 
                                 \begin{document}
@@ -219,7 +223,7 @@ ale można je bez problemu uogólnić na zbiór z porządkiem częściowym, co t
 liniowych element największy i maksymalny znaczą to samo. Analogicznie jest z elementem najmniejszym
 i minimalnym. Sprawy mają się inaczej w przypadku porządków częściowych. Oczywiście, element
 największy jest również i maksymalny. Jednak implikacja w drugą stronę już nie zawsze zachodzi.
-Obrazem tego stanu rzeczy są podane \href{https://calcworkshop.com/wp-content/uploads/hasse-diagram-find-the-maximal-minimal-least-and-greatest.png}{diagramy Hassego}.
+Obrazem tego stanu rzeczy są podane \href{https://calcworkshop.com/wp-content/uploads/hasse-diagram-find-the-maximal-minimal-least-and-greatest.png}{{\color{blue} \underline{diagramy Hassego}}}.
 
 \begin{twier}{Twierdzenie 1.2}
     Dane są dwie relacje $\preceq$ i $\prec$ w zbiorze $A$. Jeśli spełniają one następujące warunki:
@@ -473,7 +477,7 @@ były tam zapisane w trochę bardziej eleganckiej postaci.}.
 \subsection*{{\color{darkred} Aksjomaty porządku}} 
 \begin{enumerate}[label=(\arabic*)]
     \item \textbf{Prawo trichotomii}
-    \footnote{Aksjomat ten uwzględniamy, gdy przyjmujemy $(\R,+,\cdot,<)$
+    \footnote{Aksjomat ten uwzględniamy, gdy przyjmujemy $(\R,+,\cdot,<)$,
     na wykładzie natomiast przyjęliśmy $(\R,+,\cdot,\le)$.}
     \((\forall a,b\in\R)\) zachodzi \emph{dokładnie jedna} z trzech możliwości:
     \begin{equation*}
@@ -556,16 +560,125 @@ terminowi egzaminu ustnego. Na kolosie zagadnienia te raczej nie będą potrzebn
 \begin{equation*}
     \R:=\ilorazowy{\set{\op{A,B}:\text{przekroje Dedekinda}}}
 \end{equation*}
+\newpage
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                \section*{Sekcja 5} \smallskip
+                                {\Huge\bfseries Ciągi} \bigskip \medskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{defr}{Definicja 5.1: Ciąg nieskończony}
+    \textbf{Ciągiem} (nieskończonym) o elementach w zbiorze \(A\)
+    nazywamy dowolną funkcję $a:\N\to A$ (ozn. $a_n$, $\set{a_n}_{n\in\N}$
+    i $(a_n)_{n\in\N}$).
+\end{defr}
 
+\begin{defr}{Definicja 5.2: Podciąg}
+    Jeżeli $\seq{a}$ jest ciągiem o elementach w zbiorze $A$ oraz
+    $\seq{k}$ jest ciągiem ściśle rosnącym o elementach w $\N$,
+    to ciąg $a\circ k=\set{a_{k_n}}_{n\in\N}$ nazywamy \textbf{podciągiem}
+    ciągu $\seq{a}$.
+\end{defr}
 
+\begin{defr}{Definicja 5.3: Granica ciągu}
+    Mówimy, że $g\in \R$ jest granicą ciągu $\seq{a}$, jeżeli
+    \begin{equation*}
+        \forall_{\varepsilon>0}\ \exists_{n_\varepsilon\in\N}\ 
+        \forall_{n\ge n_\varepsilon, n\in\N}\hquad
+        |a_n-g|<\varepsilon.
+    \end{equation*}
+\end{defr}
 
+Gdy $g$ jest granicą ciągu $\seq{a}$, to piszemy, że $\lin{a_n}=g$
+lub $a_n\arn g$.
 
+\begin{twier}{Twierdzenie 5.1}
+    Ciąg może mieć co najwyżej jedną granicę.
+\end{twier}
 
+\begin{defr}{Definicja 5.4: Ciąg Cauchy'ego}
+    \textbf{Ciągiem Cauchy'ego} nazywamy ciąg $\seq{a}$, jeśli
+    \begin{equation*}
+        \forall_{\varepsilon>0}\ \exists_{M\in\N}\
+        \forall_{n,m\geq M}\ \forall_{m,n\in\N}\hquad
+        |a_n-a_m|<\varepsilon.
+    \end{equation*}
+\end{defr}
 
+\begin{twier}{Twierdzenie 5.2}
+    Każdy ciąg zbieżny jest ciągiem Cauchy'ego.
+\end{twier}
 
+\begin{twier}{Twierdzenie 5.3}
+    Każdy ciąg zbieżny jest ograniczony, zarówno z dołu, jak i z góry.
+\end{twier}
+
+\begin{twier}{Twierdzenie 5.4}
+    Jeżeli ciąg $\seq{a}$ jest rozbieżny do $+\infty$ ($-\infty$),
+    to jest ograniczony z dołu (góry).
+\end{twier}
+
+\begin{twier}{Twierdzenie o arytmetycznych własnościach granic 5.5}
+Jeśli $\seq{a}$ i $\seq{b}$ są ciągami liczbowymi takimi, że
+$a_n\arn a$ i $b_n\arn b$ oraz $c\in\R$, to
+\begin{enumerate}[label=(\arabic*)]
+    \item $ca_n\arn ca$,
+    \item $|a_n|\arn|a|$,
+    \item $a_n+b_n\arn a+b$,
+    \item $a_n-b_n\arn a-b$,
+    \item $a_n b_n \arn ab$,
+    \item $a_n\ /\ \!{b_n}\arn a\ /\ \!b$, o ile $b\neq 0$ i 
+    $(\forall n\in\N)\ b_n\neq 0$.
+\end{enumerate}
+\end{twier}
+
+\begin{twier}{Twierdzenie o arytmetycznych własnościach granic niewłaściwych 5.6}
+\% do późniejszego uzupełnienia
+\end{twier}
+
+Powyższe twierdzenia, jak i jakiekolwiek twierdzenia o aytmetycznych własnościach
+granic nie mają zastosowania w przypadku tzw. \textit{wyrażeń nieoznaczonych}.
+Do opisania takich wyrażeń wykorzystuje się następujące symbole:
+\begin{equation*}
+\infty -\infty  ,\hquad 0\cdot\infty,\hquad \frac{0}{0},\hquad \frac{\infty}{\infty},
+\hquad 1^{\infty},\hquad \infty^{0},\hquad 0^0.  
+\end{equation*}
+
+\begin{twier}{Twierdzenie 5.7}
+Jeżeli ciąg $\seq{a}$ jest zbieżny, a $\seq{b}$ nie, to
+ciąg $\seq{c}$ postaci $c_n=a_n+b_n$ również \underline{nie} jest zbieżny.
+\end{twier}
+
+\begin{twier}{Twierdzenie 5.8}
+    Dane są ciągi $\seq{a}$ oraz $\seq{b}$. Jeżeli $\set{a_n}$ jest ograniczony
+    z dołu (z góry), a $\set{b_n}$ ma granicę niewłaściwą $+\infty$ ($-\infty$),
+    to ciąg $\set{a_n+b_n}_{n\in\N}$ jest rozbieżny do $+\infty$ ($-\infty$).
+\end{twier}
+
+\begin{twier}{Twierdzenie 5.9}
+Dane są ciągi liczbowe $\seq{a}$ i $\seq{b}$.
+    \begin{itemize}
+        \item Jeśli $a_n\arn+\infty$ oraz istnieje $q>0$ takie, że dddn $b_n>q$,
+        wówczas $a_n b_n\arn +\infty$.
+        \item Jeśli $a_n\arn+\infty$ oraz istnieje $q>0$ takie, że dddn $b_n<-q$,
+        wówczas $a_n b_n\arn -\infty$.
+    \end{itemize}
+\end{twier}
+
+\begin{twier}{Twierdzenie 5.10}
+Dany jest ciąg liczbowy $\seq{a}$.
+\begin{enumerate}[label=(\arabic*)]
+    \item $a_n\arn \pm\infty \imp 1/\!a_n \arn 0$.
+    \item $a_n\arn 0\land \text{ \textit{dddn} } a_n>0\imp 1/\!a_n\arn +\infty$.
+    \item $a_n\arn 0\land \text{ \textit{dddn} } a_n<0\imp 1/\!a_n\arn -\infty$.
+\end{enumerate}
+\end{twier}
+
+\begin{twier}{Twierdzenie 5.11}
+Jeśli ciąg $\seq{a}$ jest zbieżny do $g$ to każdy podciąg ciągu $\set{a_n}$ też
+jest zbieżny do $g$.
+\end{twier}
 
 
 
