@@ -1,7 +1,7 @@
 \documentclass{article}
 
 \usepackage[utf8]{inputenc}
-\usepackage{geometry} \geometry{margin=85pt}
+\usepackage{geometry} \geometry{margin=85pt,tmargin=55pt}
 \usepackage[polish]{babel}
 \usepackage[OT4]{fontenc}
 \usepackage[document]{ragged2e}
@@ -17,6 +17,7 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{graphicx}
+\usepackage{braket}
 
 %%%%%%%%%%%%%%%
 % TWIERDZENIA $
@@ -77,9 +78,10 @@
 \newcommand{\ifff}{\Leftrightarrow}
 \newcommand{\imp}{\Rightarrow}
 \newcommand{\ilorazowy}[1]{#1/\!{_R}}
-\newcommand{\lin}[1]{\lim_{n\to\infty}{#1}}
+\newcommand{\lin}[1]{\lim\limits_{n\to\infty}{#1}}
 \newcommand{\arn}{\xrightarrow{n\to\infty}}
-\DeclarePairedDelimiter\set\{\}
+\newcommand{\ar}{\rightarrow}
+
 \ExplSyntaxOn
 \NewDocumentCommand{\op}{m}
  {
@@ -619,22 +621,45 @@ lub $a_n\arn g$.
     to jest ograniczony z dołu (góry).
 \end{twier}
 
-\begin{twier}{Twierdzenie o arytmetycznych własnościach granic 5.5}
-Jeśli $\seq{a}$ i $\seq{b}$ są ciągami liczbowymi takimi, że
-$a_n\arn a$ i $b_n\arn b$ oraz $c\in\R$, to
-\begin{enumerate}[label=(\arabic*)]
-    \item $ca_n\arn ca$,
-    \item $|a_n|\arn|a|$,
-    \item $a_n+b_n\arn a+b$,
-    \item $a_n-b_n\arn a-b$,
-    \item $a_n b_n \arn ab$,
-    \item $a_n\ /\ \!{b_n}\arn a\ /\ \!b$, o ile $b\neq 0$ i 
-    $(\forall n\in\N)\ b_n\neq 0$.
-\end{enumerate}
+\begin{twier}{Twierdzenie 5.5}
+Jeśli ciąg $\seq{a}$ jest zbieżny do $g$ to każdy podciąg ciągu $\set{a_n}$ też
+jest zbieżny do $g$.
 \end{twier}
 
-\begin{twier}{Twierdzenie o arytmetycznych własnościach granic niewłaściwych 5.6}
-\% do późniejszego uzupełnienia
+W celu uproszeczenia późniejszego zapisu, wprowadźmy parę (autorskich!) oznaczeń.
+\begin{align*}
+    [a_n\quad &ozn. &(\exists m\in\R)(\forall n\in\N)\ &a_n\ge m\\
+    a_n]\quad &ozn. &(\exists M\in\R)(\forall n\in\N)\ &a_n\le M\\
+    [a_n]\quad &ozn. &(\exists M\in\R)(\forall n\in\N)\ &|a_n|\le M\\
+    %)a_n\quad &ozn. &(\forall m\in\R)(\exists N\in\N)\ &a_N<m\\
+    %a_n(\quad &ozn. &(\forall M\in\R)(\exists N\in\N)\ &a_N>M\\
+    %)a_n(\quad &ozn. &(\forall M\in\R)(\exists N\in\N)\ &|a_N|>M\\
+    %[a_n(\quad &ozn. &&[a_n\ \land\ a_n(\\
+    %&itd.
+\end{align*}
+
+\begin{twier}{Twierdzenia o „arytmetyce” granic 5.6}
+    Niech $\seq{a}$ i $\seq{b}$ będą ciągami liczbowymi oraz $a,b \in\R$.
+    \begin{enumerate}[label=(\arabic*)]
+        \item $a_n\arn a \implies |a_n|\arn|a|$.
+        \item $a_n\arn a \implies \sqrt{a_n}\arn\sqrt{a}$.
+        \item $a_n\arn a\ \land\  b_n\arn b \implies a_n+b_n\arn a+b$.
+        \item $a_n\arn a\ \land\ b_n\arn b\implies a_n-b_n\arn a-b$.
+        \item $a_n\arn+\infty\ \land\ \left[b_n\right. \implies a_n+b_n\arn +\infty$.
+        \item $a_n\arn-\infty\ \land\ \left.b_n\right] \implies a_n+b_n\arn -\infty$.
+        \item $a_n\arn a\ \land\ b_n\arn b\implies a_n b_n \arn ab$.
+        \item $a_n\arn 0\ \land\ [b_n]\implies a_nb_n\arn 0$.
+        \item $a_n\arn+\infty\ \land\ (\exists q>0)\hquad dddn\hquad b_n>q\implies a_nb_n\arn+\infty$.
+        \item $a_n\arn+\infty\ \land\ (\exists q<0)\hquad dddn\hquad b_n<q\implies a_nb_n\arn-\infty$.
+        \item $a_n\arn a\ \land\ b_n\arn b\neq0\ \land\ (\forall n\in\N)\ b_n\neq0\implies\frac{a_n}{b_n}\arn\frac{a}{b}$.
+        \item $[a_n]\ \land\ |b_n|\arn+\infty\implies \frac{a_n}{b_n}\arn0$.
+        \item $a_n\arn0\ \land\ (\exists c>0)\hquad dddn\hquad |b_n|>0 \implies \frac{a_n}{b_n}\arn0$.
+        \item $a_n\arn+\infty\ \land\ [b_n]\ \land\ dddn\hquad b_n>0\implies \frac{a_n}{b_n}\arn+\infty$.
+        \item $a_n\arn-\infty\ \land\ [b_n]\ \land\ dddn\hquad b_n>0\implies \frac{a_n}{b_n}\arn-\infty$.
+        \item $a_n\arn+\infty\ \land\ [b_n]\ \land\ dddn\hquad b_n<0\implies \frac{a_n}{b_n}\arn-\infty$.
+        \item $a_n\arn-\infty\ \land\ [b_n]\ \land\ dddn\hquad b_n<0\implies \frac{a_n}{b_n}\arn+\infty$.
+        \item $a_n\arn1\ \land\ b_n\arn 0\implies a_n^{b_n}\arn1$.
+    \end{enumerate}
 \end{twier}
 
 Powyższe twierdzenia, jak i jakiekolwiek inne twierdzenia o arytmetycznych własnościach
@@ -646,40 +671,67 @@ Do opisania takich wyrażeń wykorzystuje się następujące symbole:
 \end{equation*}
 
 \begin{twier}{Twierdzenie 5.7}
-Jeżeli ciąg $\seq{a}$ jest zbieżny, a $\seq{b}$ nie, to
-ciąg $\seq{c}$ postaci $c_n=a_n+b_n$ również \underline{nie} jest zbieżny.
+    Jeżeli ciąg $\seq{a}$ jest zbieżny, a $\seq{b}$ nie, to
+    ciąg $\seq{c}$ postaci $c_n=a_n+b_n$ również \underline{nie} jest zbieżny.
 \end{twier}
 
-\begin{twier}{Twierdzenie 5.8}
-    Dane są ciągi $\seq{a}$ oraz $\seq{b}$. Jeżeli $\set{a_n}$ jest ograniczony
-    z dołu (z góry), a $\set{b_n}$ ma granicę niewłaściwą $+\infty$ ($-\infty$),
-    to ciąg $\set{a_n+b_n}_{n\in\N}$ jest rozbieżny do $+\infty$ ($-\infty$).
-\end{twier}
-
-\begin{twier}{Twierdzenie 5.9}
-Dane są ciągi liczbowe $\seq{a}$ i $\seq{b}$.
-    \begin{itemize}
-        \item Jeśli $a_n\arn+\infty$ oraz istnieje $q>0$ takie, że dddn $b_n>q$,
-        wówczas $a_n b_n\arn +\infty$.
-        \item Jeśli $a_n\arn+\infty$ oraz istnieje $q>0$ takie, że dddn $b_n<-q$,
-        wówczas $a_n b_n\arn -\infty$.
-    \end{itemize}
-\end{twier}
-
-\begin{twier}{Twierdzenie 5.10}
-Dany jest ciąg liczbowy $\seq{a}$.
-\begin{enumerate}[label=(\arabic*)]
-    \item $a_n\arn \pm\infty \imp 1/\!a_n \arn 0$.
-    \item $a_n\arn 0\land \text{ \textit{dddn} } a_n>0\imp 1/\!a_n\arn +\infty$.
-    \item $a_n\arn 0\land \text{ \textit{dddn} } a_n<0\imp 1/\!a_n\arn -\infty$.
+\begin{twier}{Twierdzenie o szacowaniu granic 5.8}
+Załózmy, że $\seq{a}$ i $\seq{b}$ są zbieżnymi ciągami liczb rzeczywistych
+oraz $x\in\R$. Zachodzą wówczas następujące implikacje:
+\begin{enumerate}[label=(\roman*)]
+    \item $\lim\limits_{n\to\infty}{a_n}>x\implies dddn\hquad a_n>x$,
+    \item $\lim\limits_{n\to\infty}{a_n}<x\implies dddn\hquad a_n<x$,
+    \item $\lim\limits_{n\to\infty}{a_n}>\lim\limits_{n\to\infty}{b_n}\implies dddn\hquad a_n>b_n$,
+    \item $dddn\hquad a_n\le b_n\implies \lim\limits_{n\to\infty}{a_n}\le\lim\limits_{n\to\infty}{b_n}$.
 \end{enumerate}
 \end{twier}
 
-\begin{twier}{Twierdzenie 5.11}
-Jeśli ciąg $\seq{a}$ jest zbieżny do $g$ to każdy podciąg ciągu $\set{a_n}$ też
-jest zbieżny do $g$.
+Na wykładzie przedstawiono tylko (iv). (iii) jest równoważne (iv) z prawa kontrapozycji. (i) da się łatwo wywieść z (iii),
+wystarczy bowiem przyjąć, że $b_n$ jest ciągiem stałym stale równym $x$. (ii) dowodzimy analogicznie.
+
+\begin{twier}{Twierdzenie o dwóch ciągach 5.9}
+Niech $\seq{a}$ i $\seq{b}$ będą ciągami liczb rzeczywistych, wówczas zachodzą następujące implikacje:
+\begin{enumerate}[label=\Roman*.]
+    \item $\lin{a_n}=+\infty\ \land\ dddn\hquad b_n\ge a_n\implies \lin{b_n}=+\infty$,
+    \item $\lin{a_n}=-\infty\ \land\ dddn\hquad b_n\le a_n\implies \lin{b_n}=-\infty$.
+\end{enumerate}
 \end{twier}
 
+\begin{twier}{Twierdzenie o trzech ciągach 5.10}
+Jeżeli $\seq{a}$, $\seq{b}$, $\seq{c}$ są ciągami liczb rzeczywistych, to wówczas
+\begin{equation*}
+    \lin{a_n}=\lin{c_n}=g\ \land\ dddn\hquad a_n\le b_n\le c_n\implies \lin{b_n}=g.
+\end{equation*}
+\end{twier}
+
+\begin{twier}{Twierdzenie 5.11}
+Niech $\seq{a}$ i $\seq{b}$ będą ciągami liczb rzeczywistych, wówczas zachodzą następujące implikacje:
+\begin{enumerate}[label=\Roman*.]
+    \item $dddn\hquad a_n>0\ \land\ (\exists q>1)\hquad dddn\hquad \frac{a_{n+q}}{a_n}>q\implies \lin{a_n}=+\infty$,
+    \item $dddn\hquad a_n>0\ \land\ (\exists q<1)\hquad dddn\hquad \frac{a_{n+1}}{a_n}<q\implies \lin{a_n}=0$.
+\end{enumerate}
+\end{twier}
+
+\smallskip
+\textit{Parę przykładów granic ciągów:}
+\begin{align}
+    \lin{\frac{q^n}{n^k}}=&
+        \begin{cases}
+            +\infty, &\text{dla }\ q>1 \lor(q=1\land k<0)\\
+            1, &\text{dla }\ q=1\land k=0\\
+            0, &\text{dla }\ q<1\lor(q=1\land k>0)
+        \end{cases}\text{, gdzie }q\ge0.\\
+    \lin{\sqrt[n]{n}}=&1
+\end{align}\smallskip
+
+\begin{twier}{Twierdzenie o ciągu monotonicznym i ograniczonym 5.12}
+\begin{enumerate}[label=\Roman*.]
+    \item Każdy niemalejący i ograniczony z góry ciąg $\seq{a}$ jest zbieżny do
+    \[\sup\limits_{n\in\N}{a_n}=\sup{\set{a_n:n\in\N}}.\]
+    \item Każdy nierosnący i ograniczony z dołu ciąg $\seq{a}$ jest zbieżny do
+    \[\inf\limits_{n\in\N}{a_n}=\inf{\set{a_n:n\in\N}}.\]
+\end{enumerate}
+\end{twier}
 
 
 
