@@ -609,7 +609,7 @@ lub $a_n\arn g$.
 \end{defr}
 
 \begin{twier}{Twierdzenie 5.2}
-    Każdy ciąg zbieżny jest ciągiem Cauchy'ego.
+    Każdy ciąg liczb rzeczywistych jest zbieżny, wtedy i tylko wtedy gdy spełnia warunek Cauchy'ego (tzn. jest ciągiem Cauchy'ego).
 \end{twier}
 
 \begin{twier}{Twierdzenie 5.3}
@@ -625,18 +625,6 @@ lub $a_n\arn g$.
 Jeśli ciąg $\seq{a}$ jest zbieżny do $g$ to każdy podciąg ciągu $\set{a_n}$ też
 jest zbieżny do $g$.
 \end{twier}
-
-W celu uproszeczenia późniejszego zapisu, wprowadźmy parę (autorskich!) oznaczeń.
-\begin{align*}
-    [a_n\quad &ozn. &(\exists m\in\R)(\forall n\in\N)\ &a_n\ge m\\
-    a_n]\quad &ozn. &(\exists M\in\R)(\forall n\in\N)\ &a_n\le M\\
-    [a_n]\quad &ozn. &(\exists M\in\R)(\forall n\in\N)\ &|a_n|\le M\\
-    %)a_n\quad &ozn. &(\forall m\in\R)(\exists N\in\N)\ &a_N<m\\
-    %a_n(\quad &ozn. &(\forall M\in\R)(\exists N\in\N)\ &a_N>M\\
-    %)a_n(\quad &ozn. &(\forall M\in\R)(\exists N\in\N)\ &|a_N|>M\\
-    %[a_n(\quad &ozn. &&[a_n\ \land\ a_n(\\
-    %&itd.
-\end{align*}
 
 \begin{twier}{Twierdzenia o „arytmetyce” granic 5.6}
     Niech $\seq{a}$ i $\seq{b}$ będą ciągami liczbowymi oraz $a,b \in\R$.
@@ -658,9 +646,27 @@ W celu uproszeczenia późniejszego zapisu, wprowadźmy parę (autorskich!) ozna
         \item $a_n\arn-\infty\ \land\ [b_n]\ \land\ dddn\hquad b_n>0\implies \frac{a_n}{b_n}\arn-\infty$.
         \item $a_n\arn+\infty\ \land\ [b_n]\ \land\ dddn\hquad b_n<0\implies \frac{a_n}{b_n}\arn-\infty$.
         \item $a_n\arn-\infty\ \land\ [b_n]\ \land\ dddn\hquad b_n<0\implies \frac{a_n}{b_n}\arn+\infty$.
-        \item $a_n\arn1\ \land\ b_n\arn 0\implies a_n^{b_n}\arn1$.
+        \item $a_n\arn a\ \land\ b_n\arn b\implies a_n^{b_n}\arn a^b$.
+        \item $a_n\arn a>1\ \land\ b_n\arn +\infty\implies a_n^{b_n}\arn +\infty$.
+        \item $a_n\arn a\in(0,1)\ \land\ b_n\arn +\infty\implies a_n^{b_n}\arn 0$.
+        \item $a_n\arn a>0\ \land\ b_n\arn -\infty\implies a_n^{b_n}\arn 0$.
+        \item $a_n\arn a\in(0,1)\ \land\ b_n\arn -\infty\implies a_n^{b_n}\arn +\infty$.
+        \item $a_n\arn +\infty\ \land\ b_n\arn b>0\implies a_n^{b_n}\arn +\infty$.
+        \item $a_n\arn +\infty\ \land\ b_n\arn b<0\implies a_n^{b_n}\arn 0$.
     \end{enumerate}
 \end{twier}
+
+W celu uproszeczenia zapisu, wprowadziłem do powyższych twierdzeń parę (autorskich!) oznaczeń.
+\begin{align*}
+    [a_n\quad &ozn. &(\exists m\in\R)(\forall n\in\N)\ &a_n\ge m\\
+    a_n]\quad &ozn. &(\exists M\in\R)(\forall n\in\N)\ &a_n\le M\\
+    [a_n]\quad &ozn. &(\exists M\in\R)(\forall n\in\N)\ &|a_n|\le M\\
+    %)a_n\quad &ozn. &(\forall m\in\R)(\exists N\in\N)\ &a_N<m\\
+    %a_n(\quad &ozn. &(\forall M\in\R)(\exists N\in\N)\ &a_N>M\\
+    %)a_n(\quad &ozn. &(\forall M\in\R)(\exists N\in\N)\ &|a_N|>M\\
+    %[a_n(\quad &ozn. &&[a_n\ \land\ a_n(\\
+    %&itd.
+\end{align*}
 
 Powyższe twierdzenia, jak i jakiekolwiek inne twierdzenia o arytmetycznych własnościach
 granic nie mają zastosowania w przypadku tzw. \textit{wyrażeń nieoznaczonych}.
@@ -674,6 +680,9 @@ Do opisania takich wyrażeń wykorzystuje się następujące symbole:
     Jeżeli ciąg $\seq{a}$ jest zbieżny, a $\seq{b}$ nie, to
     ciąg $\seq{c}$ postaci $c_n=a_n+b_n$ również \underline{nie} jest zbieżny.
 \end{twier}
+
+Przydatną własnością wynikającą z tw. 5.7 i tw. 5.6 jest to, że jeśli ciąg $b_n=a_n-g\arn 0$, to $(a_n)$ jest zbieżny i to
+dokładnie do granicy $g$.
 
 \begin{twier}{Twierdzenie o szacowaniu granic 5.8}
 Załózmy, że $\seq{a}$ i $\seq{b}$ są zbieżnymi ciągami liczb rzeczywistych
@@ -704,7 +713,7 @@ Jeżeli $\seq{a}$, $\seq{b}$, $\seq{c}$ są ciągami liczb rzeczywistych, to wó
 \end{equation*}
 \end{twier}
 
-\begin{twier}{Twierdzenie 5.11}
+\begin{twier}{Kryterium d'Alamberta dla ciągów 5.11}
 Niech $\seq{a}$ i $\seq{b}$ będą ciągami liczb rzeczywistych, wówczas zachodzą następujące implikacje:
 \begin{enumerate}[label=\Roman*.]
     \item $dddn\hquad a_n>0\ \land\ (\exists q>1)\hquad dddn\hquad \frac{a_{n+q}}{a_n}>q\implies \lin{a_n}=+\infty$,
@@ -713,16 +722,6 @@ Niech $\seq{a}$ i $\seq{b}$ będą ciągami liczb rzeczywistych, wówczas zachod
 \end{twier}
 
 \smallskip
-\textit{Parę przykładów granic ciągów:}
-\begin{align}
-    \lin{\frac{q^n}{n^k}}=&
-        \begin{cases}
-            +\infty, &\text{dla }\ q>1 \lor(q=1\land k<0)\\
-            1, &\text{dla }\ q=1\land k=0\\
-            0, &\text{dla }\ q<1\lor(q=1\land k>0)
-        \end{cases}\text{, gdzie }q\ge0.\\
-    \lin{\sqrt[n]{n}}=&1
-\end{align}\smallskip
 
 \begin{twier}{Twierdzenie o ciągu monotonicznym i ograniczonym 5.12}
 \begin{enumerate}[label=\Roman*.]
@@ -733,11 +732,59 @@ Niech $\seq{a}$ i $\seq{b}$ będą ciągami liczb rzeczywistych, wówczas zachod
 \end{enumerate}
 \end{twier}
 
+\begin{twier}{Twierdzenie Bolzano-Weierstrassa 5.13}
+Jeżeli ciąg $\seq{a}\subset \R$ jest ograniczony (zarówno z góry jak i z dołu), to posiada podciąg zbieżny.
+\end{twier}
 
+\begin{defr}{Definicja 5.5: Liczba Eulera}
+    \textbf{Liczbą Eulera} nazywamy niewymierną liczbę, zdefiniowaną jako granicę 
+    \begin{equation*}
+        e=\lin{\Bigl(1+\frac{1}{n}\Bigl)^n}.
+    \end{equation*}
+\end{defr}
 
+\begin{twier}{Twierdzenie 5.14}
+Ciąg $e_n=(1+ 1/n)^n$ jest niemalejący, a $\tilde{e}_n=(1+1/n)^{n+1}$ nierosnący. Ponadto
+\begin{equation*}
+    (\forall n\in\N_+)\hquad \Bigl(1+\frac{1}{n}\Bigl)^n < e < \Bigl(1+\frac{1}{n}\Bigl)^{n+1}.
+\end{equation*}
+\end{twier}
 
+\textit{Parę przykładów granic ciągów:}
+\begin{align}
+    \lin{\frac{q^n}{n^k}}=\ &
+        \begin{cases}
+            +\infty, &\text{dla }\ q>1 \lor(q=1\land k<0)\\
+            1, &\text{dla }\ q=1\land k=0\\
+            0, &\text{dla }\ q<1\lor(q=1\land k>0)
+        \end{cases}\text{, gdzie }q\ge0.\\
+    \lin{\sqrt[n]{n}}=\ &1\\
+    \lin{\Bigl(1+\frac{1}{n} \Bigl)^{n+1}}=\ &e\\
+    \lin{\sum_{k=0}^{n}\frac{1}{k!}}=\ &e
+\end{align}\smallskip
 
+\begin{twier}{Twierdzenie 5.15}
+    Jeżeli $\seq{a}$ i $\seq{b}$ są ciągami liczb rzeczywistych, to wówczas
+    \begin{equation*}
+        \lin{a_n}=0\ \land\ \lin{a_n b_n}=g\implies \lin{(1+a_n)^{b_n}}=e^g.
+    \end{equation*}
+\end{twier}
 
+\begin{twier}{Uogólniona nierówność Bernoulliego 5.16}
+    Klasyczną nierówność Bernoulliego można uogólnić do poniższej postaci.
+\begin{align*}
+    (1+x)^r\ge1+rx,\quad&\text{dla}\hquad x>-1\ \land\ r\ge1\\\
+    (1+x)^r\le1+rx,\quad&\text{dla}\hquad x>-1\ \land\ r\in(0,1]
+\end{align*}
+\end{twier}
+
+\begin{twier}{Twierdzenie 5.17}
+Niech $\seq{a}$ będzie ciagiem liczb rzeczywistych, wówczas
+\begin{enumerate}[label=(\arabic*)]
+    \item $\lin{a_n}=+\infty\implies\lin{a_n\ln{\bigl(1+\frac{1}{a_n}\bigl)}}=1,$
+    \item $\lin{a_n}=0\implies\lin{\frac{\ln{(1+a_n)}}{a_n}}=1$.
+\end{enumerate}
+\end{twier}
 
 
 
