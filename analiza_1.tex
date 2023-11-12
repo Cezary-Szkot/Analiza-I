@@ -641,7 +641,7 @@ jest zbieżny do $g$.
         \item $a_n\arn+\infty\ \land\ (\exists q<0)\hquad dddn\hquad b_n<q\implies a_nb_n\arn-\infty$.
         \item $a_n\arn a\ \land\ b_n\arn b\neq0\ \land\ (\forall n\in\N)\ b_n\neq0\implies\frac{a_n}{b_n}\arn\frac{a}{b}$.
         \item $[a_n]\ \land\ |b_n|\arn+\infty\implies \frac{a_n}{b_n}\arn0$.
-        \item $a_n\arn0\ \land\ (\exists c>0)\hquad dddn\hquad |b_n|>0 \implies \frac{a_n}{b_n}\arn0$.
+        \item $a_n\arn0\ \land\ (\exists c>0)\hquad dddn\hquad |b_n|>c \implies \frac{a_n}{b_n}\arn0$.
         \item $a_n\arn+\infty\ \land\ [b_n]\ \land\ dddn\hquad b_n>0\implies \frac{a_n}{b_n}\arn+\infty$.
         \item $a_n\arn-\infty\ \land\ [b_n]\ \land\ dddn\hquad b_n>0\implies \frac{a_n}{b_n}\arn-\infty$.
         \item $a_n\arn+\infty\ \land\ [b_n]\ \land\ dddn\hquad b_n<0\implies \frac{a_n}{b_n}\arn-\infty$.
@@ -649,7 +649,7 @@ jest zbieżny do $g$.
         \item $a_n\arn a\ \land\ b_n\arn b\implies a_n^{b_n}\arn a^b$.
         \item $a_n\arn a>1\ \land\ b_n\arn +\infty\implies a_n^{b_n}\arn +\infty$.
         \item $a_n\arn a\in(0,1)\ \land\ b_n\arn +\infty\implies a_n^{b_n}\arn 0$.
-        \item $a_n\arn a>0\ \land\ b_n\arn -\infty\implies a_n^{b_n}\arn 0$.
+        \item $a_n\arn a>1\ \land\ b_n\arn -\infty\implies a_n^{b_n}\arn 0$.
         \item $a_n\arn a\in(0,1)\ \land\ b_n\arn -\infty\implies a_n^{b_n}\arn +\infty$.
         \item $a_n\arn +\infty\ \land\ b_n\arn b>0\implies a_n^{b_n}\arn +\infty$.
         \item $a_n\arn +\infty\ \land\ b_n\arn b<0\implies a_n^{b_n}\arn 0$.
@@ -716,7 +716,7 @@ Jeżeli $\seq{a}$, $\seq{b}$, $\seq{c}$ są ciągami liczb rzeczywistych, to wó
 \begin{twier}{Kryterium d'Alamberta dla ciągów 5.11}
 Niech $\seq{a}$ i $\seq{b}$ będą ciągami liczb rzeczywistych, wówczas zachodzą następujące implikacje:
 \begin{enumerate}[label=\Roman*.]
-    \item $dddn\hquad a_n>0\ \land\ (\exists q>1)\hquad dddn\hquad \frac{a_{n+q}}{a_n}>q\implies \lin{a_n}=+\infty$,
+    \item $dddn\hquad a_n>0\ \land\ (\exists q>1)\hquad dddn\hquad \frac{a_{n+1}}{a_n}>q\implies \lin{a_n}=+\infty$,
     \item $dddn\hquad a_n>0\ \land\ (\exists q<1)\hquad dddn\hquad \frac{a_{n+1}}{a_n}<q\implies \lin{a_n}=0$.
 \end{enumerate}
 \end{twier}
