@@ -13,6 +13,5 @@ Notatki rozpoczynają się od relacji, bo dopiero od nich zacząłem uważnie no
 - W celu zredukowania liczby niepotrzebnych oznaczeń w definicjach, zamiast pisać, że x jest w relacji f z y, to pisałem, iż para uporządkowana (x,y) należy do f
 - Pomimo tego, iż w seriach ćwiczeniowych są zadania z funkcji odwrotnych oraz wyrażenie to padło w twierdzeniach na wykładzie, to na dobrą sprawę nie została nawet podana jej definicja. To co zostało zdefiniowane na wykładzie to relacja odwrotna, a nie funkcja odwrotna, a pomiędzy tymi dwiema istnieje różnica. Każdą relację można odwrócić, a to samo już się nie tyczy funkcji. Tylko bijekcje są odwracalne (lub też surjekcje jeżeli przyjmiemy ogólniejszą definicję funkcji odwrotnej). W notatkach podałem definicję funkcji odwrotnej uwzględniającą ten fakt
 
-media.discordapp.net/attachments/1166328896216629258/1169047185854316604/Turzyn_soneczko.png?ex=65667008&is=6553fb08&hm=f8dbffc26305ee43a3273cc8a30b8ef9a9f482adc04dd7e1ab697f7b55cf817f&
 
 
