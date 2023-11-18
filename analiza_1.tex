@@ -81,6 +81,8 @@
 \newcommand{\lin}[1]{\lim\limits_{n\to\infty}{#1}}
 \newcommand{\arn}{\xrightarrow{n\to\infty}}
 \newcommand{\ar}{\rightarrow}
+\newcommand*\interior[1]{\mathring{#1}}
+\newcommand*\closure[1]{\overline{#1}}
 
 \ExplSyntaxOn
 \NewDocumentCommand{\op}{m}
@@ -848,7 +850,7 @@ zbieżności w przypadku (i) można odszukać w
                                 {\Huge\bfseries Przestrzenie metryczne} \bigskip \medskip
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-W sekcji tej $X$ będzie oznaczać dowolny niepusty zbiór, który wraz z wyróżnioną metryką $d$, tworzy przestrzeń metryczną,
+W sekcji tej $X$ będzie oznaczać dowolny niepusty zbiór,
 chyba że w danym ustępie zaznaczę, że jest inaczej. Również pisząc o kuli, będę miał na myśli kulę otwartą.
 Wszelkie niezdefiniowane $n$ będzie w domyśle liczbą naturalną.
 
@@ -865,6 +867,54 @@ Wszelkie niezdefiniowane $n$ będzie w domyśle liczbą naturalną.
 
 Warunek (1) jest tak na prawdę zbędny, bowiem wynika on z trzech pozostałych:
 $$0\stackrel{(3)}{=}d(x,x)\stackrel{(4)}{\le} d(x,y)+d(y,x)\stackrel{(2)}{=}2d(x,y)\implies 0\le d(x,y).$$
+
+\begin{center}
+    \subsection*{Przykłady metryk}
+\end{center}
+
+\begin{enumerate}[label=\textbf{(\arabic*)}]
+    \item \textit{metryka dyskretna}, $\quad d_d:X\footnote{$X$ to dowolny niepusty zbiór.}\times X\ar\set{0,1}$
+    \begin{equation*}
+        \forall_{x,y\in X}\hquad d_d(x,y)=\begin{cases}1,\hquad\text{gdy }x\neq y\\0,\hquad\text{gdy }x=y\end{cases}
+    \end{equation*}
+    \item \textit{metryka miejska (taksówkowa)}, $\quad d_1:\R^n\times\R^n\ar\R$
+    \begin{equation*}
+        \forall_{x,y\in\R^n}\hquad d_1(x,y)=\sum_{k=1}^{n}{|x_k-y_k|}
+    \end{equation*}
+    \item \textit{metryka euklidesowa}, $\quad d_2:\R^n\times\R^n\ar\R$
+    \begin{equation*}
+        \forall_{x,y\in\R^n}\hquad \sqrt{\sum_{k=1}^{n}{(x_k-y_k)^2}}
+    \end{equation*}
+    \item \textit{uogólniona metryka euklidesowa}\footnote{Nie mogłem odnaleźć nazwy tej metryki, więc koniec końców
+    tak ją nazwałem. Warto zatem nie przywiązywać do niej większej wagi.}, $\quad d_p:\R^n\times\R^n\ar\R$
+    \begin{equation*}
+        \forall_{x,y\in\R^n}\ \forall_{p\ge1}\hquad d_p(x,y)=\left(\sum_{k=1}^{n}{|x_k-y_k|^{p}}\right)^{\frac{1}{p}}
+    \end{equation*}
+    \item \textit{metryka maksimum (Czebyszewa, szachowa)}, $\quad d_{\infty}:\R^n\times\R^n\ar\R$
+    \begin{equation*}
+        \forall_{x,y\in\R^n}\hquad d_{\infty}(x,y)=\max_{k=\set{1,\dots,n}}{|x_k-y_k|}
+    \end{equation*}
+    \item \textit{metryka supremum}, $\quad d_{sup}:\mathcal{B}(X,Y)
+    \footnote{$\mathcal{B}(X,Y)$ to zbiór funkcji ograniczonych ze zbioru $X$ do przestrzeni metrycznej $(Y,d_y)$.}
+    \times\mathcal{B}(X,Y)\ar\R$
+    \begin{equation*}
+        \forall_{f,g\in\mathcal{B}(X,Y)}\hquad d_{sup}=\sup_{x\in X}{d_y\left(f(x),g(x)\right)}
+    \end{equation*}
+        \begin{enumerate}
+            \item \textit{Przypadek szczególny.}\footnote{Na wykładzie pojawił się tylko przypadek szczególny. Ogólna definicja
+            jest moim dodatkiem.}
+            Niech $\mathcal{B}(X,\R)$ będzie zbiorem funkcji ograniczonych ze
+            zbioru $X$ do zbioru liczb rzeczywistych $\R$, wyposażonego w metrykę euklidesową. Metryka supremum
+            przyjmuje wówczas postać
+            \begin{equation*}
+                \forall_{f,g\in\mathcal{B}(X,\R)}\hquad d_{sup}=\sup_{x\in X}{|f(x)-g(x)|}.
+            \end{equation*}
+        \end{enumerate}
+\end{enumerate}
+
+Pary $(X,d_d)$, $(\R^n,d_1)$, ($\R^n,d_2$), ($\R^n,d_p$), ($\R^n,d_{\infty}$), ($\mathcal{B}(X,Y),d_{sup}$) są przestrzeniami
+metrycznymi.
+\medskip
 
 \begin{defr}{Definicja 6.2: Kula otwarta}
     \textbf{Kulą otwartą} w przestrzeni metrycznej $(X,d)$ o środku w punkcie $a\in X$ i promieniu $r>0$
@@ -918,14 +968,35 @@ Należy zwrócić uwagę, że istnieją przestrzenie metryczne, w których nie w
 \end{defr}
 
 \begin{defr}{Definicja 6.8: Zbiór otwarty}
-    Zbiór $A\subset X$ nazywamy \textbf{otwartym}, jeżeli jest otoczeniem każdego swojego punktu, czyli
+    Zbiór $A\subset X$ nazywamy \textbf{otwartym} w przestrzeni metrycznej $(X,d)$,
+    jeżeli jest otoczeniem każdego swojego punktu, czyli
     \begin{equation*}
         \forall_{x\in A}\ \exists_{r>0}\hquad B(x,r)\subset A.
     \end{equation*}
 \end{defr}
 
 \begin{defr}{Definicja 6.9: Wnętrze}
-    
+    \textbf{Wnętrzem} zbioru $A\subset X$ w przestrzeni metrycznej $(X,d)$ nazywamy zbiór punktów, dla których $A$
+    jest otoczeniem,
+    \begin{equation*}
+        \interior{A}=\set{x\in A:\exists_{r>0}\hquad B(x,r)\subset A}.
+    \end{equation*}
+\end{defr}
+
+\begin{defr}{Definicja 6.10: Domknięcie}
+    \textbf{Domknięciem} zbioru $A\subset X$ w przestrzeni metrycznej $(X,d)$ nazywamy zbiór
+    \begin{equation*}
+        \closure{A}=\set{x\in X:\forall_{r>0}\hquad B(x,r)\cap A\neq\emptyset}.
+    \end{equation*}
+\end{defr}
+
+Domknięcie i wnętrze zbioru $A$ alternatywnie oznaczamy jako $cl\ A$ oraz $int\ A$.
+
+\begin{defr}{Definicja 6.11: Brzeg}
+    \textbf{Brzegiem} zbioru $A\subset X$ w przestrzeni metrycznej $(X,d)$ nazywamy zbiór
+    \begin{equation*}
+        \partial{A}=\closure{A}\setminus\interior{A}.
+    \end{equation*}
 \end{defr}
 
 
