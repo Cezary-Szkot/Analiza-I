@@ -81,8 +81,11 @@
 \newcommand{\lin}[1]{\lim\limits_{n\to\infty}{#1}}
 \newcommand{\arn}{\xrightarrow{n\to\infty}}
 \newcommand{\ar}{\rightarrow}
-\newcommand*\interior[1]{\mathring{#1}}
 \newcommand*\closure[1]{\overline{#1}}
+\newcommand*\Interior[1]{\mathring{#1}}
+
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\Closure}{cl}
 
 \ExplSyntaxOn
 \NewDocumentCommand{\op}{m}
@@ -94,6 +97,7 @@
 }
 \ExplSyntaxOff
 \newcommand{\seq}[1]{\set{#1_n}_{n\in\N}}
+\newcommand{\ri}[1]{\set{#1_i}_{i\in I}}
 
 
                                 \begin{document}
@@ -881,9 +885,9 @@ $$0\stackrel{(3)}{=}d(x,x)\stackrel{(4)}{\le} d(x,y)+d(y,x)\stackrel{(2)}{=}2d(x
     \begin{equation*}
         \forall_{x,y\in\R^n}\hquad d_1(x,y)=\sum_{k=1}^{n}{|x_k-y_k|}
     \end{equation*}
-    \item \textit{metryka euklidesowa}, $\quad d_2:\R^n\times\R^n\ar\R$
+    \item \textit{metryka euklidesowa}, $\quad d_E:\R^n\times\R^n\ar\R$
     \begin{equation*}
-        \forall_{x,y\in\R^n}\hquad \sqrt{\sum_{k=1}^{n}{(x_k-y_k)^2}}
+        \forall_{x,y\in\R^n}\hquad d_E(x,y)=\sqrt{\sum_{k=1}^{n}{(x_k-y_k)^2}}
     \end{equation*}
     \item \textit{uogólniona metryka euklidesowa}\footnote{Nie mogłem odnaleźć nazwy tej metryki, więc koniec końców
     tak ją nazwałem. Warto zatem nie przywiązywać do niej większej wagi.}, $\quad d_p:\R^n\times\R^n\ar\R$
@@ -910,9 +914,17 @@ $$0\stackrel{(3)}{=}d(x,x)\stackrel{(4)}{\le} d(x,y)+d(y,x)\stackrel{(2)}{=}2d(x
                 \forall_{f,g\in\mathcal{B}(X,\R)}\hquad d_{sup}=\sup_{x\in X}{|f(x)-g(x)|}.
             \end{equation*}
         \end{enumerate}
+    \item \textit{metryka rzymska}, $\quad d_r:\R^2\times\R^2\ar\R$
+    \begin{equation*}
+        \forall_{x,y\in\R^2}\hquad d_r(x,y)=\begin{cases}
+            \sqrt{(x_1-y_1)^2+(x_2-y_2)^2},\hquad\text{gdy punkty $x$, $y$ i $(0,0)$ leżą na jednej prostej}\\
+            \sqrt{x_1^2+x^2_2}+\sqrt{y_1^2+y_2^2},\hquad\text{gdy punkty $x$, $y$ i $(0,0)$ nie leżą na jednej prostej}
+        \end{cases}
+    \end{equation*}
 \end{enumerate}
 
-Pary $(X,d_d)$, $(\R^n,d_1)$, ($\R^n,d_2$), ($\R^n,d_p$), ($\R^n,d_{\infty}$), ($\mathcal{B}(X,Y),d_{sup}$) są przestrzeniami
+Pary $(X,d_d)$, $(\R^n,d_1)$, ($\R^n,d_E$), ($\R^n,d_p$), ($\R^n,d_{\infty}$), ($\mathcal{B}(X,Y),d_{sup}$),
+($\R^2$) są przestrzeniami
 metrycznymi.
 \medskip
 
@@ -961,21 +973,14 @@ takiego jak rozbieżność do $\pm\infty$}.
     \end{equation*}
 \end{defr}
 
-Należy zwrócić uwagę, że istnieją przestrzenie metryczne, w których nie wszystkie ciągi Cauchy'ego są zbieżne.
+Należy zwrócić uwagę, że istnieją przestrzenie metryczne, w których nie wszystkie ciągi Cauchy'ego są zbieżne. Natomiast
+wszystkie ciągi zbieżne są ciągami Cauchy'ego.
 
 \begin{defr}{Definicja 6.7: Przestrzeń zupełna}
     Przestrzeń metryczna $(X,d)$ jest \textbf{zupełna}, jeśli każdy ciąg Cauchy'ego w tej przestrzeni jest zbieżny.
 \end{defr}
 
-\begin{defr}{Definicja 6.8: Zbiór otwarty}
-    Zbiór $A\subset X$ nazywamy \textbf{otwartym} w przestrzeni metrycznej $(X,d)$,
-    jeżeli jest otoczeniem każdego swojego punktu, czyli
-    \begin{equation*}
-        \forall_{x\in A}\ \exists_{r>0}\hquad B(x,r)\subset A.
-    \end{equation*}
-\end{defr}
-
-\begin{defr}{Definicja 6.9: Wnętrze}
+\begin{defr}{Definicja 6.8: Wnętrze}
     \textbf{Wnętrzem} zbioru $A\subset X$ w przestrzeni metrycznej $(X,d)$ nazywamy zbiór punktów, dla których $A$
     jest otoczeniem,
     \begin{equation*}
@@ -983,14 +988,24 @@ Należy zwrócić uwagę, że istnieją przestrzenie metryczne, w których nie w
     \end{equation*}
 \end{defr}
 
-\begin{defr}{Definicja 6.10: Domknięcie}
+\begin{defr}{Definicja 6.9: Zbiór otwarty}
+    Zbiór $A\subset X$ nazywamy \textbf{otwartym} w przestrzeni metrycznej $(X,d)$,
+    jeżeli jest otoczeniem każdego swojego punktu, czyli
+    \begin{equation*}
+        \forall_{x\in A}\ \exists_{r>0}\hquad B(x,r)\subset A.
+    \end{equation*}
+    Zbiór $A$ jest otwarty, wtedy i tylko wtedy gdy $A=\interior{A}$.
+\end{defr}
+
+\begin{defr}{Definicja 6.10: Domknięcie i zbiór domknięty}
     \textbf{Domknięciem} zbioru $A\subset X$ w przestrzeni metrycznej $(X,d)$ nazywamy zbiór
     \begin{equation*}
         \closure{A}=\set{x\in X:\forall_{r>0}\hquad B(x,r)\cap A\neq\emptyset}.
     \end{equation*}
+    $A$ jest \textbf{zbiorem domkniętym}, gdy $A=\closure{A}$.
 \end{defr}
 
-Domknięcie i wnętrze zbioru $A$ alternatywnie oznaczamy jako $cl\ A$ oraz $int\ A$.
+Domknięcie i wnętrze zbioru $A$ alternatywnie oznaczamy jako $cl\ A$ oraz $\mathring{A}$.
 
 \begin{defr}{Definicja 6.11: Brzeg}
     \textbf{Brzegiem} zbioru $A\subset X$ w przestrzeni metrycznej $(X,d)$ nazywamy zbiór
@@ -999,8 +1014,57 @@ Domknięcie i wnętrze zbioru $A$ alternatywnie oznaczamy jako $cl\ A$ oraz $int
     \end{equation*}
 \end{defr}
 
+\begin{twier}{Twierdzenie 6.1}
+    Zbiór $A\subset X$ jest domknięty w przestrzeni metrycznej $(X,d)$, \textit{wtedy i tylko wtedy gdy} każdy zbieżny ciąg $\seq{a}\subset A$
+    posiada granicę $g\in A$.
+    \begin{equation*}
+        A=\closure{A}\iff\forall_{a\in A^\N}\ \left(\exists_{g\in X}\ \lin{d(a_n,g)=0}\implies g\in A\right)
+    \end{equation*}
+\end{twier}
 
+\begin{twier}{Twierdzenie 6.2}
+    Zbiór $A\subset X$ jest otwarty w przestrzeni metrycznej $(X,d)$, \textit{wtedy i tylko wtedy gdy} zbiór $X\setminus A$ jest domknięty.
+    \begin{equation*}
+        A=\interior{A}\iff X\setminus A=\Closure{\left(X\setminus A\right)}
+    \end{equation*}
+\end{twier}
 
+\begin{twier}{Twierdzenie 6.3}
+    \begin{enumerate}[label=(\arabic*)]
+        \item Suma dowolnej rodziny zbiorów otwartych jest zbiorem otwartym.
+        \item Przecięcie skończonej rodziny zbiorów otwartych jest zbiorem otwartym.
+        \item Przecięcie dowolnej rodziny zbiorów domkniętych jest zbiorem domkniętym.
+        \item Suma skończonej rodziny zbiorów domkniętych jest zbiorem domkniętym.
+    \end{enumerate}
+\end{twier}
+
+\begin{defr}{Definicja 6.12: Pokrycie i pokrycie otwarte}
+    Rodzinę zbiorów $\ri{U}$, zawartą w przestrzeni $X$, nazywamy \textbf{pokryciem} zbioru $A\subset X$, jeśli
+    \begin{equation*}
+        A=\bigcup_{i\in I}{U_i}.
+    \end{equation*}
+    Mówimy, że pokrycie $\ri{U}$ jest \textbf{pokryciem otwartym}, jeśli $\forall_{i\in I}\ U_i=\interior{U_i}$.
+\end{defr}
+
+\begin{defr}{Definicja 6.13: Podpokrycie}
+    Niech $\ri{U}$, zawarty w przestrzeni $X$, będzie pokryciem zbioru $A$ oraz $K\subset I$. Jeśli $\set{U_k}_{k\in K}$
+    jest wówczas pokryciem $A$, to $\set{U_k}_{k\in K}$ nazywamy \textbf{podpokryciem} pokrycia $\ri{U}$.
+\end{defr}
+
+\begin{defr}{Definicja 6.14: Zbiór zwarty}
+    Zbiór $A$, zawarty w przestrzeni $X$, nazywamy \textbf{zwartym}, jeśli z każdego pokrycia otwartego zbioru $A$ można
+    wybrać podpokrycie skończone.
+\end{defr}
+
+\begin{twier}{Twierdzenie 6.4}
+    Zbiór $A$, zawarty w przestrzeni $X$, jest zwarty, \textit{wtedy i tylko wtedy gdy} zbiór $A$ jest \textit{ciągowo zwarty}, czyli
+    gdy z każdego ciągu $\seq{x}\subset A$ można wybrać podciąg $\set{x_{n_k}}_{k\in K\subset\N}$ zbieżny w $A$.
+\end{twier}
+
+\begin{twier}{Twierdzenie 6.5}
+    Zbiór $A$, zawarty w przestrzeni metrycznej $(\R^n,d_E)$, jest zwarty, \textit{wtedy i tylko wtedy gdy} $A$ jest
+    domknięty i ograniczony.
+\end{twier}
 
 
 
