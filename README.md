@@ -5,7 +5,7 @@ Notatki rozpoczynają się od relacji, bo dopiero od nich zacząłem uważnie no
 # Wykaz zmian względem wykładu (nieaktualizowane)
 **Sekcja 1**
  - Używałem przeważnie oznaczenia "R" dla relacji zamiast "~"
- - W liście własności relacji podałem dwie, które nie zostały nazwane na wykładzie lub doczekały się błędnej nazwy. Chodzi tutaj o spójność i silną antysymetryczność, ta druga została mylnie określona jako po prostu antysymetryczność, ale dla porządku ostrego
+ - W liście własności relacji podałem dwie, które nie zostały nazwane na wykładzie. Chodzi tutaj o spójność i silną antysymetryczność.
  - Pominąłem konstrukcję zbiorów na podstawie klas równoważności. Nie ma tego na wykazie tematów do ustnego i nie było zadań z tego na ćwiczeniach
  - Używałem oznaczeń: \prec i \preceq zamiast \le i \leq dla porządków
 
