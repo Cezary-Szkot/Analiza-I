@@ -1062,10 +1062,31 @@ Domknięcie i wnętrze zbioru $A$ alternatywnie oznaczamy jako $cl\ A$ oraz $\ma
     domknięty i ograniczony.
 \end{twier}
 
+\begin{defr}{Definicja 6.15: Zbiór gęsty}
+    Zbiór $A\subset X$ nazywamy \textbf{gęstym} w przestrzeni metrycznej $(X,d)$, jesli $\closure{A}=X$. 
+\end{defr}
 
+\begin{defr}{Definicja 6.16: Zbiór spójny i niespójny}
+    Zbiór $A$, zawarty w przestrzeni $X$, nazywamy \textbf{niespójnym}, jeśli 
+    \begin{equation*}
+        \exists_{B_1,B_2\neq\emptyset}\ \left(B_1\cup B_2=A\ \land\ \closure{B_1}\cap B_2=\emptyset\ \land\ B_1\cap\closure{B_2}=\emptyset\right). 
+    \end{equation*}
+    W przeciwnym przypadku zbiór $A$ jest \textbf{spójny}, czyli gdy
+    \begin{equation*}
+        \forall_{B_1,B_2\neq\emptyset}\ \left(B_1\cup B_2=A\implies\closure{B_1}\cap B_2\neq\emptyset\ \lor\ B_1\cap\closure{B_2}\neq\emptyset\right).
+    \end{equation*}
+\end{defr}
 
-
-
+\begin{defr}{Definicja 6.17: Równoważność metryk}
+    Niech $X$ będzie niepustym zbiorem, a $d_1$ i $d_2$ metrykami na nim. Mówimy, że metryki $d_1$ i $d_2$ są \textbf{równoważne}, gdy
+    \begin{enumerate}[label=\Roman*.]
+        \item $\forall_{x,y\in X}\ \forall_{\delta>0}\ \exists_{\varepsilon>0}\hquad
+        (d_1(x,y)<\varepsilon\implies d_2(x,y)<\delta)\ \land\ (d_2(x,y)<\varepsilon\implies d_1(x,y)<\delta$),
+        \item $\forall_{x\in X}\ \forall_{\delta>0}\ \exists_{\varepsilon>0}\hquad
+        B_1(x,\varepsilon)\subset B_2(x,\delta)\ \land\ B_2(x,\varepsilon)\subset B_1(x,\delta)$.
+    \end{enumerate}
+\end{defr}
+Wymienione wyżej warunki I. i II. są równoważne, więc wystarczy wykazanie tylko jednego z nich.
 
 
 
