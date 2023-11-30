@@ -80,6 +80,7 @@
 \newcommand{\ilorazowy}[1]{#1/\!{_R}}
 \newcommand{\lin}[1]{\lim\limits_{n\to\infty}{#1}}
 \newcommand{\arn}{\xrightarrow{n\to\infty}}
+\newcommand{\arr}[1]{\xrightarrow{#1}}
 \newcommand{\ar}{\rightarrow}
 \newcommand*\closure[1]{\overline{#1}}
 \newcommand*\Interior[1]{\mathring{#1}}
@@ -239,7 +240,7 @@ Obrazem tego stanu rzeczy są podane \href{https://calcworkshop.com/wp-content/u
         \item $(\forall a,b\in A)(a\preceq b \ifff a\prec b \lor a=b)$
         \item $(\forall a,b\in A)(a\prec b \ifff a\preceq b \land a\ne b)$,
     \end{enumerate}
-    wówczas $\preceq$ jest porządkiem słabym, wtedy i tylko wtedy gdy $\prec$ jest porządkiem ostrym. 
+    wówczas $\preceq$ jest porządkiem słabym wtedy i tylko wtedy, gdy $\prec$ jest porządkiem ostrym. 
 \end{twier}
 
 \begin{defr}{Definicja 1.8: Relacja odwrotna}
@@ -615,7 +616,7 @@ lub $a_n\arn g$.
 \end{defr}
 
 \begin{twier}{Twierdzenie 5.2}
-    Każdy ciąg liczb rzeczywistych jest zbieżny, wtedy i tylko wtedy gdy spełnia warunek Cauchy'ego (tzn. jest ciągiem Cauchy'ego).
+    Każdy ciąg liczb rzeczywistych jest zbieżny wtedy i tylko wtedy, gdy spełnia warunek Cauchy'ego (tzn. jest ciągiem Cauchy'ego).
 \end{twier}
 
 \begin{twier}{Twierdzenie 5.3}
@@ -873,8 +874,8 @@ Warunek (1) jest tak na prawdę zbędny, bowiem wynika on z trzech pozostałych:
 $$0\stackrel{(3)}{=}d(x,x)\stackrel{(4)}{\le} d(x,y)+d(y,x)\stackrel{(2)}{=}2d(x,y)\implies 0\le d(x,y).$$
 
 \begin{center}
-    \subsection*{Przykłady metryk}
-\end{center}
+    \subsection*{Przykłady metryk}\label{metryki}
+\end{center} 
 
 \begin{enumerate}[label=\textbf{(\arabic*)}]
     \item \textit{metryka dyskretna}, $\quad d_d:X\footnote{$X$ to dowolny niepusty zbiór.}\times X\ar\set{0,1}$
@@ -889,8 +890,7 @@ $$0\stackrel{(3)}{=}d(x,x)\stackrel{(4)}{\le} d(x,y)+d(y,x)\stackrel{(2)}{=}2d(x
     \begin{equation*}
         \forall_{x,y\in\R^n}\hquad d_E(x,y)=\sqrt{\sum_{k=1}^{n}{(x_k-y_k)^2}}
     \end{equation*}
-    \item \textit{uogólniona metryka euklidesowa}\footnote{Nie mogłem odnaleźć nazwy tej metryki, więc koniec końców
-    tak ją nazwałem. Nie warto zatem przywiązywać do niej większej wagi.}, $\quad d_p:\R^n\times\R^n\ar\R$
+    \item \textit{metryka} $d_p$ $(l_p)$, $\quad d_p:\R^n\times\R^n\ar\R$
     \begin{equation*}
         \forall_{x,y\in\R^n}\ \forall_{p\ge1}\hquad d_p(x,y)=\left(\sum_{k=1}^{n}{|x_k-y_k|^{p}}\right)^{\frac{1}{p}}
     \end{equation*}
@@ -922,6 +922,7 @@ $$0\stackrel{(3)}{=}d(x,x)\stackrel{(4)}{\le} d(x,y)+d(y,x)\stackrel{(2)}{=}2d(x
         \end{cases}
     \end{equation*}
 \end{enumerate}
+Przestrzeń $(\R^n,d_p)$ bywa oznaczana jako $\ell^p_n$.
 \medskip
 
 \begin{defr}{Definicja 6.2: Kula otwarta}
@@ -940,10 +941,11 @@ $$0\stackrel{(3)}{=}d(x,x)\stackrel{(4)}{\le} d(x,y)+d(y,x)\stackrel{(2)}{=}2d(x
 \end{defr}
 
 \begin{defr}{Definicja 6.4: Zbieżność w przestrzeni metrycznej}
-    Mówimy, że ciąg $\seq{x}\subset X$ jest zbieżny do $g$ w przestrzeni metrycznej $(X,d)$, jeśli
+    Mówimy, że ciąg $\seq{x}\subset X$ jest zbieżny do $g$ w przestrzeni metrycznej $(X,d)$ wtedy i tylko wtedy, gdy
     \begin{enumerate}[label=(\arabic*)]
         \item $\lin{d(x_n,g)}=0$,
-        \item $\forall_{\varepsilon>0}\ \exists_{M\in\N}\ \forall_{n\ge M}\hquad d(x_n,g)<\varepsilon$,
+        \item $\forall_{\varepsilon>0}\ \exists_{N>0}\ \forall_{n>N}\hquad d(x_n,g)<\varepsilon$,
+        \item $\forall_{\varepsilon>0}\ \exists_{N>0}\ \forall_{n>N}\hquad x_n\in B(g,\varepsilon)$,
         \item dla dowolnego otoczenia $U$ punktu $g$ tylko skończona liczba elementów ciągu $\seq{x}$
         leży poza $U$ (prawie wszystkie $x_n\in U$).
     \end{enumerate}
@@ -990,7 +992,7 @@ wszystkie ciągi zbieżne są ciągami Cauchy'ego.
     \begin{equation*}
         \forall_{x\in A}\ \exists_{r>0}\hquad B(x,r)\subset A.
     \end{equation*}
-    Zbiór $A$ jest otwarty, wtedy i tylko wtedy gdy $A=\interior{A}$.
+    Zbiór $A$ jest otwarty wtedy i tylko wtedy, gdy $A=\interior{A}$.
 \end{defr}
 
 \begin{defr}{Definicja 6.10: Domknięcie i zbiór domknięty}
@@ -1011,15 +1013,15 @@ Domknięcie i wnętrze zbioru $A$ alternatywnie oznaczamy jako $cl\ A$ oraz $\ma
 \end{defr}
 
 \begin{twier}{Twierdzenie 6.1}
-    Zbiór $A\subset X$ jest domknięty w przestrzeni metrycznej $(X,d)$, \textit{wtedy i tylko wtedy gdy} każdy zbieżny ciąg $\seq{a}\subset A$
+    Zbiór $A\subset X$ jest domknięty w przestrzeni metrycznej $(X,d)$ \textit{wtedy i tylko wtedy, gdy} każdy zbieżny ciąg $\seq{a}\subset A$
     posiada granicę $g\in A$.
     \begin{equation*}
-        A=\closure{A}\iff\forall_{a\in A^\N}\ \left(\exists_{g\in X}\ \lin{d(a_n,g)=0}\implies g\in A\right)
+        A=\closure{A}\iff\forall_{a\in A^\N}\ \exists_{g\in X}\ \lin{d(a_n,g)=0}\implies g\in A
     \end{equation*}
 \end{twier}
 
 \begin{twier}{Twierdzenie 6.2}
-    Zbiór $A\subset X$ jest otwarty w przestrzeni metrycznej $(X,d)$, \textit{wtedy i tylko wtedy gdy} zbiór $X\setminus A$ jest domknięty.
+    Zbiór $A\subset X$ jest otwarty w przestrzeni metrycznej $(X,d)$ \textit{wtedy i tylko wtedy, gdy} zbiór $X\setminus A$ jest domknięty.
     \begin{equation*}
         A=\interior{A}\iff X\setminus A=\Closure{\left(X\setminus A\right)}
     \end{equation*}
@@ -1053,12 +1055,12 @@ Domknięcie i wnętrze zbioru $A$ alternatywnie oznaczamy jako $cl\ A$ oraz $\ma
 \end{defr}
 
 \begin{twier}{Twierdzenie 6.4}
-    Zbiór $A$, zawarty w przestrzeni $X$, jest zwarty, \textit{wtedy i tylko wtedy gdy} zbiór $A$ jest \textit{ciągowo zwarty}, czyli
+    Zbiór $A$, zawarty w przestrzeni $X$, jest zwarty \textit{wtedy i tylko wtedy, gdy} zbiór $A$ jest \textit{ciągowo zwarty}, czyli
     gdy z każdego ciągu $\seq{x}\subset A$ można wybrać podciąg $\set{x_{n_k}}_{k\in K\subset\N}$ zbieżny w $A$.
 \end{twier}
 
 \begin{twier}{Twierdzenie 6.5}
-    Zbiór $A$, zawarty w przestrzeni metrycznej $(\R^n,d_E)$, jest zwarty, \textit{wtedy i tylko wtedy gdy} $A$ jest
+    Zbiór $A$, zawarty w przestrzeni metrycznej $(\R^n,d_E)$, jest zwarty \textit{wtedy i tylko wtedy, gdy} $A$ jest
     domknięty i ograniczony.
 \end{twier}
 
@@ -1080,22 +1082,71 @@ Domknięcie i wnętrze zbioru $A$ alternatywnie oznaczamy jako $cl\ A$ oraz $\ma
 \begin{defr}{Definicja 6.17: Równoważność metryk}
     Niech $X$ będzie niepustym zbiorem, a $d_1$ i $d_2$ metrykami na nim. Mówimy, że metryki $d_1$ i $d_2$ są \textbf{równoważne}, gdy
     \begin{enumerate}[label=\Roman*.]
-        \item $\forall_{x,y\in X}\ \forall_{\delta>0}\ \exists_{\varepsilon>0}\hquad
-        (d_1(x,y)<\varepsilon\implies d_2(x,y)<\delta)\ \land\ (d_2(x,y)<\varepsilon\implies d_1(x,y)<\delta$),
-        \item $\forall_{x\in X}\ \forall_{\delta>0}\ \exists_{\varepsilon>0}\hquad
-        B_1(x,\varepsilon)\subset B_2(x,\delta)\ \land\ B_2(x,\varepsilon)\subset B_1(x,\delta)$.
+        \item $\forall_{x,y\in X}\ \forall_{\delta>0}\ \exists_{\varepsilon_1,\varepsilon_2>0}\hquad
+        (d_1(x,y)<\varepsilon_1\implies d_2(x,y)<\delta)\ \land\ (d_2(x,y)<\varepsilon_2\implies d_1(x,y)<\delta$),
+        \item $\forall_{x\in X}\ \forall_{\delta>0}\ \exists_{\varepsilon_1,\varepsilon_2>0}\hquad
+        B_1(x,\varepsilon_1)\subset B_2(x,\delta)\ \land\ B_2(x,\varepsilon_2)\subset B_1(x,\delta)$.
     \end{enumerate}
 \end{defr}
 Wymienione wyżej warunki I. i II. są równoważne, więc wystarczy wykazanie tylko jednego z nich.
 
+\begin{twier}{Twierdzenie 6.6}
+    Metryki $d_p$ i $d_\infty$ są sobie równoważne.\footnote{Patrz \textit{\nameref{metryki}.}}
+\end{twier}
+
+Jeżeli każda metryka $d_p$ jest równoważna z każdą metryką $d_\infty$, to z przechodniości relacji równoważności,
+wszystkie metryki $d_p$ są sobie równoważne. Przykładowo metryka miejska ($d_1$) jest równoważna z euklidesową ($d_2$). 
+
+\begin{twier}{Twierdzenie 6.7}
+    Dane są przestrzenie metryczne $(X,d_1)$ i $(X,d_2)$. Metryki $d_1$ i $d_2$ są \textit{równoważne}, jeśli
+    \begin{equation*}
+        \forall_{\seq{x}\subset X}\hquad \lin{d_1(x_n,g)}=0\iff \lin{d_2(x_n,g)}=0,
+    \end{equation*}
+    tzn. dowolny ciąg $\seq{x}$ o wyrazach z $X$ jest zbieżny do $g$ w $(X,d_1)$ wtedy i tylko wtedy, gdy jest zbiezny do
+    $g$ w $(X,d_2)$.
+\end{twier}
+
+\begin{twier}{Twierdzenie 6.8}
+    Dana jest przestrzeń $\ell^p_N$, wówczas
+    \begin{equation*}
+        \forall_{\seq{x}\subset R^N}\hquad \left(\lin{d_p(x_n,g)=0}\iff\forall_{i\in\set{1,\dots,N}}\hquad\lin{x_{n,i}=g_i}\right).
+    \end{equation*} 
+\end{twier}
+
+Wyrazy postaci $a_i$ oznaczają $i$-tą współrzędną punktu $a=(a_1,\dots,a_N)\in\R^N$.
+\newpage
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                \section*{Sekcja 7} \smallskip
+                                {\Huge\bfseries Granica i ciągłośc funkcji} \bigskip \medskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+Definicje i własności w sensie Cauchy'ego będą oznaczane poprzez $(C)$, a Heinego za pomocą $(H)$.
 
+\begin{defr}{Definicja 7.1: Punkt skupienia}
+    W przestrzeni metrycznej $(X,d)$ punkt $p\in X$ jest \textbf{punktem skupienia} zbioru $A\subset X$ wtedy i tylko wtedy,
+    gdy $p\in\closure{A\setminus\set{p}}$.\smallskip
 
+    Alternatywnie punkt $p$ jest punktem skupienia zbioru $A$ wtedy i tylko wtedy, gdy 
+    jest granicą pewnego ciągu elementów zbiorów $A\setminus\set{p}$.
+\end{defr}
 
+\begin{defr}{Definicja 7.2: Granica funkcji w punkcie}
+Dane są przestrzenie metryczne $(X,d_X)$, $(Y,d_Y)$. Niech $A\subset X$, $g\in Y$, $f:A\to Y$ i $p\in\closure{A\setminus\set{p}}$.
+Mówimy, że funkcja $f$ ma granicę $g$ w punkcie (skupienia) $p$, jeśli
+\begin{enumerate}
+    \item[$(C)$] $\begin{aligned}[t]
+\forall_{\varepsilon>0}\ \exists_{\delta>0}\ \forall_{x\in A\setminus\set{p}}\hquad&d_X(p,x)<\delta\implies d_Y(f(x),g)<\varepsilon,\\
+        &x\in B_X(p,\delta)\implies f(x)\in B_Y(g,\varepsilon),
+    \end{aligned}$
+    \item[$(H)$] $\forall_{\seq{x}\,\subset\,A\setminus\set{p}}\hquad x_n\arr{d_X}p\implies f(x_n)\arr{d_Y}g$.
+\end{enumerate}
+\end{defr}
 
-
+Wyrażenie $x_n\arr{d_X}p$ oznacza zbieżność $x_n$ do $p$ w przestrzeni metrycznej $(X,d_X)$. Wprowadziłem pojęcie punktu
+skupienia, które się nie pojawiło na wykładzie, by móc uogólnić definicję granicy funkcji w punkcie dla przypadku, gdy $D_f$
+jest podzbiorem $X$.
 
 
 
