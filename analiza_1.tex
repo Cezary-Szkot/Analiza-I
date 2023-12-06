@@ -1133,25 +1133,76 @@ Definicje i własności w sensie Cauchy'ego będą oznaczane poprzez $(C)$, a He
 \end{defr}
 
 \begin{defr}{Definicja 7.2: Granica funkcji w punkcie}
-Dane są przestrzenie metryczne $(X,d_X)$, $(Y,d_Y)$. Niech $A\subset X$, $g\in Y$, $f:A\to Y$ i $p\in\closure{A\setminus\set{p}}$.
-Mówimy, że funkcja $f$ ma granicę $g$ w punkcie (skupienia) $p$, jeśli
+Dane są przestrzenie metryczne $(X,d_X)$, $(Y,d_Y)$. Niech $A\subset X$, $g\in Y$, $f:A\to Y$ i $p\in\closure{A}$.
+Mówimy, że funkcja $f$ ma \textbf{granicę} $g$ \textbf{w punkcie} (skupienia) $p$, jeśli
 \begin{enumerate}
     \item[$(C)$] $\begin{aligned}[t]
-\forall_{\varepsilon>0}\ \exists_{\delta>0}\ \forall_{x\in A\setminus\set{p}}\hquad&d_X(p,x)<\delta\implies d_Y(f(x),g)<\varepsilon,\\
+\forall_{\varepsilon>0}\ \exists_{\delta>0}\ \forall_{x\in A}\hquad&d_X(p,x)<\delta\implies d_Y(f(x),g)<\varepsilon,\\
         &x\in B_X(p,\delta)\implies f(x)\in B_Y(g,\varepsilon),
     \end{aligned}$
-    \item[$(H)$] $\forall_{\seq{x}\,\subset\,A\setminus\set{p}}\hquad x_n\arr{d_X}p\implies f(x_n)\arr{d_Y}g$.
+    \item[$(*C)$] $\begin{aligned}[t]
+\forall_{\varepsilon>0}\ \exists_{\delta>0}\ \forall_{x\in A\setminus\set{p}}\hquad&d_X(p,x)<\delta\implies d_Y(f(x),g)<\varepsilon,\\
+                &x\in B_X(p,\delta)\implies f(x)\in B_Y(g,\varepsilon),
+\end{aligned}$
+    \item[$(H)$] $\forall_{\seq{x}\,\subset\,A}\hquad x_n\arr{d_X}p\implies f(x_n)\arr{d_Y}g$,
+    \item[$(*H)$] $\forall_{\seq{x}\,\subset\,A\setminus\set{p}}\hquad x_n\arr{d_X}p\implies f(x_n)\arr{d_Y}g$.
 \end{enumerate}
 \end{defr}
 
 Wyrażenie $x_n\arr{d_X}p$ oznacza zbieżność $x_n$ do $p$ w przestrzeni metrycznej $(X,d_X)$. Wprowadziłem pojęcie punktu
 skupienia, które się nie pojawiło na wykładzie, by móc uogólnić definicję granicy funkcji w punkcie dla przypadku, gdy $D_f$
-jest podzbiorem $X$.
+jest podzbiorem $X$. Ogwiazdkowane wersje definicji są spoza wykładu i dodałem je dlatego, że częściej się je na ogół spotyka, niż
+zaprezentowane na zajęciach warianty.
 
+\begin{defr}{Definicja 7.3: Granica jednostronna funkcji w punkcie}
+Dana jest przestrzeń metryczna $(Y,d_Y)$, zbiór $X\subset\R$ oraz funkcja $f:X\to Y$.
+Mówimy, że $g\in Y$ jest \textbf{granicą lewostronną
+(prawostronną)} funkcji $f$ w punkcie (skupienia) $a\in\closure{X}$, jeżeli
+\begin{enumerate}
+    \item[(C)] $\forall_{\varepsilon>0}\ \exists_{\delta>0}\ \forall_{x\in(a-\delta,\ a)\cap X}\hquad f(x)\in B_Y(g, \varepsilon)\quad
+    \left(\forall_{\varepsilon>0}\ \exists_{\delta>0}\ \forall_{x\in(a,\ a+\delta)}\hquad f(x)\in B_Y(g, \varepsilon)\right)$,
+    \item[(H)] $\forall_{\seq{x}\,\subset X\setminus[a,\,+\infty)}\hquad x_n\arr{}p\implies f(x_n)\arr{d_Y}g\quad
+    \left(\forall_{\seq{x}\,\subset X\setminus(-\infty,\,a]}\hquad x_n\arr{}p\implies f(x_n)\arr{d_Y}g\right)$.
+\end{enumerate}
+\end{defr}
 
+\begin{defr}{Definicja 7.4: Granica funkcji w $\boldsymbol{+\infty}$ i $\boldsymbol{-\infty}$}
+Dana jest przestrzeń metryczna $(Y, d_Y)$ oraz funkcja $f:\R\supset X\to Y$. Mówimy, że $g\in Y$ jest \textbf{granicą funkcji}
+$f$ \textbf{w} $\boldsymbol{+\infty}$ $\boldsymbol{(-\infty)}$, jeżeli
+\begin{enumerate}
+    \item[(C)] $\forall_{\varepsilon>0}\ \exists_{r\in\R}\ \forall_{x\in X\setminus(-\infty,\, r]}\hquad f(x)\in B_Y(g,\varepsilon)
+    \quad \left(\forall_{\varepsilon>0}\ \exists_{r\in\R}\ \forall_{x\in X\setminus[r,\, +\infty)}\hquad f(x)\in B_Y(g,\varepsilon)\right)$,
+    \item[(H)] $\forall_{\seq{x}\,\subset X}\hquad x_n\arr{}+\infty\implies f(x_n)\arr{d_Y}g\quad
+    \left(\forall_{\seq{x}\,\subset X}\hquad x_n\arr{}-\infty\implies f(x_n)\arr{d_Y}g\right)$.
+\end{enumerate}
+\end{defr}
 
+\begin{defr}{Zbieżność od dołu/góry}
+Dana jest przestrzeń metryczna $(X,d_X)$ oraz funkcja $f:X\supset A\to\R$. Mówimy, że funkcja $f$ zbiega do granicy $g\in\R$
+w punkcie $a\in\closure{A}$ \textbf{od dołu (od góry)}, jeżeli
+    \begin{enumerate}
+        \item[(C)] $\begin{aligned}[t]
+        \forall_{\varepsilon>0}\ \exists_{\delta>0}\ \forall_{x\in B_X(a, \delta)\cap A}\hquad& f(x)\in(g-\varepsilon,g),\\
+        &\left(f(x)\in(g,g+\varepsilon)\right),
+        \end{aligned}$ 
+        \item[(H)] $\begin{aligned}[t]
+        \forall_{\seq{x}\subset X}\hquad x_n\arr{d_X}a\implies f(x_n)\arr{}g\ \land\ dddn\ \ &f(x_n)<g,\\
+        &\left(f(x_n)>g\right).
+        \end{aligned}$
+    \end{enumerate}
+\end{defr}
 
-
+\begin{defr}{Granica niewłaściwa w punkcie}
+Dana jest przestrzeń metryczna $(X,d_X)$ oraz funkcja $f:X\supset A\to\R$. Mówimy, że funkcja $f$ \textbf{rozbiega do}
+$\boldsymbol{+\infty}$ \textbf{($\boldsymbol{-\infty}$) w punkcie} $a\in\closure{A}$, jeśli
+    \begin{enumerate}
+        \item[(C)] $\begin{aligned}[t]
+        \forall_{r\in\R}\ \exists_{\delta>0}\ \forall_{x\in B_X(a, \delta)\cap A}\hquad &f(x)>r,\\
+        &\left(f(x)<r\right),
+        \end{aligned}$
+        \item[(H)] $\forall_{\seq{x}\subset A}\hquad x_n\arr{d_X}a\implies f(x_n)\arr{}+\infty\ (-\infty)$.
+    \end{enumerate}
+\end{defr}
 
 
 
