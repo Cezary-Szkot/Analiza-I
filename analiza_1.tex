@@ -1137,22 +1137,16 @@ Dane są przestrzenie metryczne $(X,d_X)$, $(Y,d_Y)$. Niech $A\subset X$, $g\in 
 Mówimy, że funkcja $f$ ma \textbf{granicę} $g$ \textbf{w punkcie} (skupienia) $p$, jeśli
 \begin{enumerate}
     \item[$(C)$] $\begin{aligned}[t]
-\forall_{\varepsilon>0}\ \exists_{\delta>0}\ \forall_{x\in A}\hquad&d_X(p,x)<\delta\implies d_Y(f(x),g)<\varepsilon,\\
-        &x\in B_X(p,\delta)\implies f(x)\in B_Y(g,\varepsilon),
-    \end{aligned}$
-    \item[$(*C)$] $\begin{aligned}[t]
 \forall_{\varepsilon>0}\ \exists_{\delta>0}\ \forall_{x\in A\setminus\set{p}}\hquad&d_X(p,x)<\delta\implies d_Y(f(x),g)<\varepsilon,\\
                 &x\in B_X(p,\delta)\implies f(x)\in B_Y(g,\varepsilon),
 \end{aligned}$
-    \item[$(H)$] $\forall_{\seq{x}\,\subset\,A}\hquad x_n\arr{d_X}p\implies f(x_n)\arr{d_Y}g$,
-    \item[$(*H)$] $\forall_{\seq{x}\,\subset\,A\setminus\set{p}}\hquad x_n\arr{d_X}p\implies f(x_n)\arr{d_Y}g$.
+    \item[$(H)$] $\forall_{\seq{x}\,\subset\,A\setminus\set{p}}\hquad x_n\arr{d_X}p\implies f(x_n)\arr{d_Y}g$.
 \end{enumerate}
 \end{defr}
 
 Wyrażenie $x_n\arr{d_X}p$ oznacza zbieżność $x_n$ do $p$ w przestrzeni metrycznej $(X,d_X)$. Wprowadziłem pojęcie punktu
 skupienia, które się nie pojawiło na wykładzie, by móc uogólnić definicję granicy funkcji w punkcie dla przypadku, gdy $D_f$
-jest podzbiorem $X$. Ogwiazdkowane wersje definicji są spoza wykładu i dodałem je dlatego, że częściej się je na ogół spotyka, niż
-zaprezentowane na zajęciach warianty.
+jest podzbiorem $X$. 
 
 \begin{defr}{Definicja 7.3: Granica jednostronna funkcji w punkcie}
 Dana jest przestrzeń metryczna $(Y,d_Y)$, zbiór $X\subset\R$ oraz funkcja $f:X\to Y$.
@@ -1177,37 +1171,97 @@ $f$ \textbf{w} $\boldsymbol{+\infty}$ $\boldsymbol{(-\infty)}$, jeżeli
 \end{enumerate}
 \end{defr}
 
-\begin{defr}{Zbieżność od dołu/góry}
+\begin{defr}{Definicja 7.5: Zbieżność od dołu/góry}
 Dana jest przestrzeń metryczna $(X,d_X)$ oraz funkcja $f:X\supset A\to\R$. Mówimy, że funkcja $f$ zbiega do granicy $g\in\R$
 w punkcie $a\in\closure{A}$ \textbf{od dołu (od góry)}, jeżeli
     \begin{enumerate}
         \item[(C)] $\begin{aligned}[t]
-        \forall_{\varepsilon>0}\ \exists_{\delta>0}\ \forall_{x\in B_X(a, \delta)\cap A}\hquad& f(x)\in(g-\varepsilon,g),\\
+        \forall_{\varepsilon>0}\ \exists_{\delta>0}\ \forall_{x\in B_X(a, \delta)\cap A\setminus\set{p}}\hquad& f(x)\in(g-\varepsilon,g),\\
         &\left(f(x)\in(g,g+\varepsilon)\right),
         \end{aligned}$ 
         \item[(H)] $\begin{aligned}[t]
-        \forall_{\seq{x}\subset X}\hquad x_n\arr{d_X}a\implies f(x_n)\arr{}g\ \land\ dddn\ \ &f(x_n)<g,\\
+        \forall_{\seq{x}\subset X\setminus\set{p}}\hquad x_n\arr{d_X}a\implies f(x_n)\arr{}g\ \land\ dddn\ \ &f(x_n)<g,\\
         &\left(f(x_n)>g\right).
         \end{aligned}$
     \end{enumerate}
 \end{defr}
 
-\begin{defr}{Granica niewłaściwa w punkcie}
+\begin{defr}{Definicja 7.6: Granica niewłaściwa w punkcie}
 Dana jest przestrzeń metryczna $(X,d_X)$ oraz funkcja $f:X\supset A\to\R$. Mówimy, że funkcja $f$ \textbf{rozbiega do}
 $\boldsymbol{+\infty}$ \textbf{($\boldsymbol{-\infty}$) w punkcie} $a\in\closure{A}$, jeśli
     \begin{enumerate}
         \item[(C)] $\begin{aligned}[t]
-        \forall_{r\in\R}\ \exists_{\delta>0}\ \forall_{x\in B_X(a, \delta)\cap A}\hquad &f(x)>r,\\
+        \forall_{r\in\R}\ \exists_{\delta>0}\ \forall_{x\in B_X(a, \delta)\cap A\setminus\set{p}}\hquad &f(x)>r,\\
         &\left(f(x)<r\right),
         \end{aligned}$
-        \item[(H)] $\forall_{\seq{x}\subset A}\hquad x_n\arr{d_X}a\implies f(x_n)\arr{}+\infty\ (-\infty)$.
+        \item[(H)] $\forall_{\seq{x}\subset A\setminus\set{p}}\hquad x_n\arr{d_X}a\implies f(x_n)\arr{}+\infty\ (-\infty)$.
     \end{enumerate}
 \end{defr}
 
+\begin{defr}{Definicja 7.7: Ciągłość funkcji}
+    Dane są przestrzenie metryczne $(X,d_X)$, $(Y, d_Y)$, funkcja $f:X\supset A\to Y$ oraz $a\in A$. Mówimy, że
+    funkcja $f$ jest \textbf{ciągła w punkcie} $a$, jeśli $\lim_{x\to a}{f(x)}=f(a)$, czyli
+    \begin{enumerate}
+        \item[($C$)] $\forall_{\varepsilon>0}\ \exists_{\delta>0}\ \forall_{x\in A}\hquad d_X(x, a)<\delta\implies d_Y(f(x), f(a))<\varepsilon$,
+        \item[($H$)] $\forall_{\seq{x}\subset A}\hquad x_n\arr{d_X} a\implies f(x_n)\arr{d_Y}f(a)$.  
+    \end{enumerate}
+    Funkcję $f$ nazywamy \textbf{ciągłą}, jeśli jest ciągła w każdym punkcie $x\in A$.
+\end{defr}
 
+\begin{defr}{Definicja 7.8: Ciągłość jednostajna}
+    Dane są przestrzenie metryczne $(X, d_X)$, $(Y, d_Y)$ oraz funkcja $f:X\to Y$. Mówimy, że funkcja $f$ jest \textbf{jednostajnie
+    ciągła} na zbiorze $A\subset X$, jeżeli
+    \begin{equation*}
+        \forall_{\varepsilon>0}\ \exists_{\delta>0}\ \forall_{x_1, x_2\in A}\hquad d_X(x_1, x_2)<\delta\implies d_Y(f(x_1), f(x_2))<\varepsilon.
+    \end{equation*}
+\end{defr}
 
+\begin{twier}{Twierdzenie 7.1}
+    Każda funkcja jednostajnie ciągła jest również ciągła.
+\end{twier}
 
+Jednakże implikacja w drugą stronę już nie zachodzi.
 
+\begin{twier}{Twierdzenie 7.2}
+    Funkcja ciągła na zbiorze zwartym jest jednostajnie ciągła.
+\end{twier}
+
+\begin{twier}{Twierdzenie 7.3}
+    Jeśli $(X, d_X)$ jest przestrzenią zupełną, a $f:X\supset A\to Y$ funkcją ciągłą, to wówczas istnieje funkcja ciągła
+    $g: \closure{A}\to Y$, taka że $g|_A=f$.
+\end{twier}
+
+\begin{twier}{Twierdzenie 7.4}
+    Obraz zbioru zwartego pod działaniem funkcji ciągłej jest zbiorem zwartym\footnote{zatem również i domkniętym}.
+\end{twier}
+
+Można również powiedzieć, że ciągły obraz zbioru zwartego jest zwarty.
+
+\begin{twier}{Twierdzenie 7.5}
+    Niech $(X, d_X)$, $(Y, d_Y)$ będą przestrzeniami metrycznymi, a $f:X\to Y$ funkcją ciągłą, wówczas
+    \begin{equation*}
+        Y\supset A=\interior{A}\implies f^{-1}(A) = \interior{f^{-1}(A)}.
+    \end{equation*}
+\end{twier}
+
+\begin{twier}{Twierdzenie o „arytmetyce” funkcji ciągłych 7.6}
+\begin{enumerate}[label=(\arabic*)]
+\item 
+    Jeśli funkcje $f,\ g: X\to Y$ są ciągłe w punkcie $p\in X$, to $f\pm g$, $f\cdot g$ są ciągłe w $p$. Ponadto jeżeli
+    $\forall_{x\in X}\ g(x)\neq0$, to $f/g$ jest określona na $X$ i ciągła w $p$.
+\item  
+    Jeśli funkcja $f:A\to Y$ jest ciągła w $p\in A$, a $g: B\to Y$, gdzie $f(A)\subset B$, jest ciągła w $f(p)$, to złożenie
+    $g\circ f$ jest ciągłe w punkcie $p$.
+\end{enumerate}
+\end{twier}
+
+\begin{twier}{Twierdzenie Weierstrassa o osiąganiu kresów 7.7}
+Niech $(X, d_X)$ będzie przestrzenią metryczną, a $f:X\to\R$ funkcją ciągłą. Jeśli $A\subset\R$ i $A\neq\emptyset$, to
+$\inf{f(A)},\, \sup{f(A)}\in f(A)$, czyli
+\begin{equation*}
+    \exists_{a_1, a_2\in A}\quad f(a_1) = \inf{f(A)}\ \land\ f(a_2) = \sup{f(A)}.
+\end{equation*}
+\end{twier}
 
 
 
