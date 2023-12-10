@@ -18,6 +18,14 @@
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{braket}
+\usepackage{physics}
+
+\preto\equation{\setcounter{equation}{0}}
+\makeatletter
+\pretocmd\start@gather{\setcounter{equation}{0}}{}{}
+\pretocmd\start@align{\setcounter{equation}{0}}{}{}
+\pretocmd\start@multline{\setcounter{equation}{0}}{}{}
+\makeatother
 
 %%%%%%%%%%%%%%%
 % TWIERDZENIA $
@@ -89,7 +97,7 @@
 \DeclareMathOperator{\Closure}{cl}
 
 \ExplSyntaxOn
-\NewDocumentCommand{\op}{m}
+\RenewDocumentCommand{\op}{m}
  {
   \langle
   \clist_set:Nn \l_tmpa_clist { #1 }
@@ -99,6 +107,8 @@
 \ExplSyntaxOff
 \newcommand{\seq}[1]{\set{#1_n}_{n\in\N}}
 \newcommand{\ri}[1]{\set{#1_i}_{i\in I}}
+
+\renewcommand{\arraystretch}{1.8}
 
 
                                 \begin{document}
@@ -1198,6 +1208,22 @@ $\boldsymbol{+\infty}$ \textbf{($\boldsymbol{-\infty}$) w punkcie} $a\in\closure
     \end{enumerate}
 \end{defr}
 
+\bigskip
+
+\textit{\textbf{\underline{Przykłady granic funkcji}}}
+
+\begin{align}
+    &\lim_{x\to 0}{x\,\sin{\frac{1}{x}}}&=0\\
+    &\lim_{x\to 0}{\frac{\sin{x}}{x}}&=1\\
+    &\lim_{x\to 0}{\frac{1-\cos{x}}{x^2}}&=\frac{1}{2}\\
+    &\lim_{x\to 0}{\frac{x}{\tan{x}}}&=1\\
+    &\lim_{x\to 0}{\frac{e^x-1}{x}}&=1\\
+    &\lim_{x\to 1}{\frac{x^p-1}{x-1}}&=p\\
+    &\lim_{x\to 0}{\frac{\ln{(1+x)}}{x}}&=1
+\end{align}
+
+\bigskip
+
 \begin{defr}{Definicja 7.7: Ciągłość funkcji}
     Dane są przestrzenie metryczne $(X,d_X)$, $(Y, d_Y)$, funkcja $f:X\supset A\to Y$ oraz $a\in A$. Mówimy, że
     funkcja $f$ jest \textbf{ciągła w punkcie} $a$, jeśli $\lim_{x\to a}{f(x)}=f(a)$, czyli
@@ -1289,17 +1315,106 @@ $\inf{f(A)},\, \sup{f(A)}\in f(A)$, czyli
     $f^{-1}:f(A)\to A$ jest również ciągła i ściśle monotoniczna.
 \end{twier}
 
+\begin{twier}{Twierdzenie o granicy złożenia 7.11}
+    $$\lim_{x\to a}{f(x)}=b\ \land\ \lim_{y\to b}{g(y)=c}\implies \lim_{x\to a}{g(f(x))=c}$$
+\end{twier}
+\newpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                                \section*{Sekcja 8} \smallskip
+                                {\Huge\bfseries Pochodne} \bigskip \medskip
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\begin{defr}{Definicja 8.1: Pochodna w punkcie}
+Niech $f:\R\supset X\to\R$ będzie funkcją określoną w otoczeniu punktu $a$
+(tzn. $\exists_{\varepsilon>0}\ (a-\varepsilon, a+\varepsilon)\subset X$).
+Jeśli istnieje granica
+\begin{equation*}
+    \lim_{h\to 0}{\frac{f(a+h)-f(a)}{h}}=\lim_{x\to a}{\frac{f(x)-f(a)}{x-a}},
+\end{equation*}
+to nazywamy ją \textbf{pochodną} funkcji $f$ \textbf{w punkcie} $a$.
+\end{defr}
 
+\begin{defr}{Definicja 8.2: Funkcja pochodna}
+Jeżeli funkcja $f:X\to\R$ jest różniczkowalna w każdym punkcie pewnego zbioru $A\subset X$, to funkcję
+$f':A\ni a\mapsto f'(a)\in R$ nazywamy \textbf{funkcją pochodną} lub \textbf{pochodną} funkcji $f$.
+\end{defr}
 
+\begin{defr}{Definicja 8.3: Jednostronna pochodna w punkcie}
+Niech $f:X\to\R$ będzie funkcją określoną w lewostronnym (prawostronnym) otoczeniu punktu $a$
+(tzn. $\exists_{\varepsilon>0}\ (a-\varepsilon, a]\ \ ([a,a+\varepsilon))$. Jeśli istnieje granica
+\begin{equation*}
+    \lim_{h\to 0^{-}}{\frac{f(a+h)-f(a)}{h}}=\lim_{x\to a^{-}}{\frac{f(x)-f(a)}{x-a}}\quad
+    \left( \lim_{h\to 0^{+}}{\frac{f(a+h)-f(a)}{h}}=\lim_{x\to a^{+}}{\frac{f(x)-f(a)}{x-a}} \right),
+\end{equation*}
+to nazywamy ją \textbf{pochodną lewostronną (prawostronną)} funkcji $f$ w punkcie $a$ i oznaczamy jako $f'_{-}(a)$
+($f'_{+}(a)$).
+\end{defr}
 
+\begin{twier}{Twierdzenie 8.1}
+Pochodne jednostronne $f'_{-}(a)$ i $f'_{+}(a)$ funkcji $f$ w punkcie $a$ istnieją oraz są sobie równe 
+$f'_{-}(a)=f'_{+}(a)=g\in\R$ \textit{wtedy i tylko wtedy, gdy} pochodna funkcji $f$ w punkcie $a$ istnieje i jest równa $g$.
+\begin{equation*}
+    \exists_{f'_{-}(a),\ f'_{+}(a)}\hquad f'_{-}(a)=f'_{+}(a)=g\iff\exists_{f'(a)}\hquad f'(a)=g
+\end{equation*}
+\end{twier}
 
+\begin{twier}{Twierdzenie o arytmetycznych własnościach pochodnej 8.2}
+\begin{enumerate}[label=\Roman*.]
+    \item Jeśli $f,\, g:\R\supset X\to\R$ są różniczkowalne w $x\in X$, to
+    \begin{gather}
+        (f+g)'(x)=f'(x)+g'(x)\ ,\\(f\cdot g)'(x)=f'(x)\,g(x)+f(x)\,g'(x)\ .
+    \end{gather}
+    \item Jeśli $f,\,g:\R\supset X\to\R$ jest różniczkowalna w $x\in X$ oraz $\forall_{x\in X}\ g(x)\neq 0$, to
+    \begin{equation*}
+        \left(\frac{f}{g}\right)'(x)=\frac{f'(x)\,g(x)-f(x)\,g'(x)}{g(x)^2}\ .
+    \end{equation*}
+\end{enumerate}
+\end{twier}
 
+Pochodna jest operacją liniową
 
+\begin{twier}{Twierdzenie 8.3}
+    Jeśli funkcja ma pochodną w punkcie $x$, to jest również w nim ciągła. 
+\end{twier}
 
+\begin{twier}{Reguła łańcuchowa 8.4}
+Niech $g:\R\supset A\to\R$ i $f:\R\supset B\to\R$, gdzie $B\supset g(A)$.
+Załóżmy, że funkcja $g$ jest określona w otoczeniu $a\in A$, a $f$ w otoczeniu $g(a)$.
+Jeśli $g$ jest różniczkowalna w punkcie $a$ i $f$ jest różniczkowalna w $g(a)$, to złożenie
+$f\circ g$ jest funkcją różniczkowalną w punkcie $a$ i ma pochodną
+\begin{equation*}
+    (f\circ g)'(a)=f'(g(a))\cdot g(a)\ .
+\end{equation*}
+\end{twier}
 
+\begin{twier}{Twierdzenie o pochodnej funkcji odwrotnej 8.5}
+    Niech $f:\R\supset A\to f(A)\subset \R$ będzie funkcją różnowartościową, różniczkowalną w $a\in A$.
+    Jeśli $f'(a)\ne0$ i $f^{-1}$ jest ciągła w $f(a)$, to $f^{-1}$ jest różniczkowalna w $f(a)$ i zachodzi wzór
+    \begin{equation*}
+        \left( f^{-1} \right)'(x)=\frac{1}{f'(x)}.
+    \end{equation*}
+\end{twier}
 
+\begin{table}[h]
+\begin{center}
+    \begin{tabular}{|c|c|}
+    \hline
+    $f(x)$        & $f'(x)$           \\ \hline 
+    $x^n$         & $nx^{n-1}$        \\ \hline
+    $a^x$         & $a^x\,\ln{a}$     \\ \hline
+    $\log_{a}{x}$ & $1/(x\ln{a})$     \\ \hline
+    $\sin{x}$     & $\cos{x}$         \\ \hline
+    $\cos{x}$     & $-\sin{x}$        \\ \hline
+    $\tan{x}$     & $1/\cos^2{x}$     \\ \hline
+    $\arcsin{x}$  & $1/\sqrt{1-x^2}$  \\ \hline
+    $\arccos{x}$  & $-1/\sqrt{1-x^2}$ \\ \hline
+    $\arctan{x}$  & $1/(1+x^2)$       \\ \hline
+    $\sinh{x}$    & $\cosh{x}$        \\ \hline
+    $\tanh{x}$    & $1-\tanh^2{x}$    \\ \hline
+    \end{tabular}
+\end{center}
+\end{table}
 
 
 
