@@ -1281,8 +1281,8 @@ Można również powiedzieć, że ciągły obraz zbioru zwartego jest zwarty.
 \end{enumerate}
 \end{twier}
 
-\begin{twier}{Twierdzenie Weierstrassa o osiąganiu kresów 7.7}
-Niech $(X, d_X)$ będzie przestrzenią metryczną, a $f:X\to\R$ funkcją ciągłą. Jeśli $A\subset\R$ i $A\neq\emptyset$, to
+\begin{twier}{Twierdzenie Weierstrassa o osiąganiu kresów 7.7} %ponoć coś tutaj miałem poprawić, ale nie pamiętam co
+Niech $(X, d_X)$ będzie przestrzenią metryczną, a $f:X\to\R$ funkcją ciągłą. Jeśli $A\neq\emptyset$ oraz $A=\closure{A}$, to
 $\inf{f(A)},\, \sup{f(A)}\in f(A)$, czyli
 \begin{equation*}
     \exists_{a_1, a_2\in A}\quad f(a_1) = \inf{f(A)}\ \land\ f(a_2) = \sup{f(A)}.
@@ -1396,7 +1396,113 @@ $f\circ g$ jest funkcją różniczkowalną w punkcie $a$ i ma pochodną
     \end{equation*}
 \end{twier}
 
-\begin{table}[h]
+\begin{defr}{Definicja 8.4: Ekstrema lokalne}
+    Mówimy, że funkcja $f:X\to\R$ ma w $c\in X$ \textbf{maksimum (minimum) lokalne}, jeśli istnieje otoczenie $U\subset X$
+    punktu $c$ takie, że 
+    \begin{gather*}
+        \forall_{x\in U}\hquad f(x)\le f(c)\\
+        \left(\ \ \forall_{x\in U}\hquad f(x)\ge f(c)\ \ \right).
+    \end{gather*}
+\end{defr}
+
+\begin{defr}{Definicja 8.5: Ekstrema lokalne właściwe}
+    Mówimy, że funkcja $f:X\to\R$ ma w $c\in X$ \textbf{maksimum (minimum) lokalne właściwe}, jeśli istnieje otoczenie $U\subset X$
+    punktu $c$ takie, że 
+    \begin{gather*}
+        \forall_{x\in U\setminus\set{c}}\hquad f(x)< f(c)\\
+        \left(\ \ \forall_{x\in U\setminus\set{c}}\hquad f(x)> f(c)\ \ \right).
+    \end{gather*}
+\end{defr}
+
+\begin{defr}{Definicja 8.6: Ekstrema globalne}
+    Funkcja $f:X\to\R$ ma w $c\in X$ \textbf{maksimum (minimum) globalne}, jeśli
+    \begin{gather*}
+        \forall_{x\in X}\hquad f(c)\ge f(x)\\
+        \left(\ \ \forall_{x\in X}\hquad f(c)\le f(x)\ \ \right).
+    \end{gather*}
+\end{defr}
+
+Podobnie jak w przypadku ekstremów lokalnych, można definiować ekstrema globalne właściwe.
+
+\begin{twier}{Twierdzenie 8.6}
+    Jeżeli $f:[a,b]\to\R$ jest różniczkowalna w $c\in(a,b)$ i ma w tym punkcie ekstremum, to pochodna $f'(c)=0$.
+\end{twier}
+
+\begin{defr}{Definicja 8.7: Punkt krytyczny}
+    Niech $f:x\to Y$. Mówimy, że punkt $a\in X$ jest \textbf{punktem krytycznym} funkcji $f$, jeśli funkcja $f$ nie jest różniczkowalna w punkcie $a$\footnote{Ta część definicji nie pojawiła się na wykładzie.} albo jest w tym punkcie różniczkowalna i pochodna $f'(a)=0$.
+\end{defr}
+
+Jeżeli funkcja $f$ jest różniczkowalna na całej swej dziedzinie, to wszystkie punkty, w których $f$ ma ekstrema są punktami krytycznymi. Jednakże odwrotna relacja już nie musi zachodzić. 
+
+\begin{twier}{Twierdzenie Rolle'a 8.7}
+    Niech $f:[a,b]\to\R$ będzie funkcją ciągłą, różniczkowalną na $(a,b)$, wówczas
+    \begin{equation*}
+        f(a)=f(b)\implies\exists_{c\in(a,b)}\ f'(c)=0.
+    \end{equation*}
+\end{twier}
+
+\begin{twier}{Twierdzenie Lagrange'a o wartości średniej 8.8}
+    Niech $f:[a,b]\to\R$ będzie funkcją ciągłą, różniczkowalną na $(a,b)$, wówczas
+    \begin{equation*}
+        \exists_{c\in(a,b)}\hquad f'(c)=\frac{f(b)-f(a)}{b-a}.
+    \end{equation*}
+\end{twier}
+
+\begin{twier}{Twierdzenie Cauchy'ego o wartości średniej 8.9}
+    Niech $f,g:[a,b]\to\R$ będą funkcjami ciągłymi i różniczkowalnymi na przedziale $(a,b)$, wówczas
+    \begin{equation*}
+        \exists_{c\in(a,b)}\hquad (f(b)-f(a))\ g'(c) = (g(b)-g(a))\ f'(c).
+    \end{equation*}
+    Jeśli $g'(c)\neq0$ oraz $g(a)\neq g(b)$, to powyższe zdanie można zapisać w postaci
+    \begin{equation*}
+        \exists_{c\in(a,b)}\hquad \frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(c)}{g'(c)}.
+    \end{equation*}
+\end{twier}
+
+Warto zwrócić tutaj uwagę na wnioski wypływające z tego twierdzenia. Jeżeli $\forall_{x\in(a,b)}\ f'(x)=0$, to funkcja $f$ jest stała na przedziale $(a,b)$. Po drugie, jeżeli $\forall_{x\in(a,b)}\ f'(x)=g'(x)$, to istnieje takie $r\in\R$, że $f(x)=g(x)+r$.
+
+\begin{twier}{Twierdzenie 8.10}
+Niech funkcja $f$ będzie różniczkowalna na $(a,b)$, wówczas
+    \begin{align*}
+        \forall_{x\in(a,b)}\hquad f'(x)>0&\implies\text{$f$ jest ściśle rosnąca na $(a,b)$},\\
+        \forall_{x\in(a,b)}\hquad f'(x)<0&\implies\text{$f$ jest ściśle malejąca na $(a,b)$},\\
+        \forall_{x\in(a,b)}\hquad f'(x)\ge0&\implies\text{$f$ jest niemalejąca na $(a,b)$},\\
+        \forall_{x\in(a,b)}\hquad f'(x)\le0&\implies\text{$f$ jest nierosnąca na $(a,b)$}.
+    \end{align*}
+\end{twier}
+
+\begin{twier}{Twierdzenie 8.11}
+    Jeżeli funkcja $f$ jest niemalejąca i różniczkowalna na $(a,b)$, to $\forall_{x\in(a,b)}\ f'(x)\ge0$.\\
+    Jeżeli funkcja $f$ jest nierosnąca i różniczkowalna na $(a,b)$, to $\forall_{x\in(a,b)}\ f'(x)\le0$.
+\end{twier}
+
+\begin{twier}{Twierdzenie 8.12}
+    Niech $f:(a,b)\to\R$ oraz $c\in(a,b)$. Jeśli 
+    \begin{enumerate}
+        \item $f'(c)>0\hquad (f'(c)<0$),
+        \item $f'$ istnieje na pewnym otoczeniu $c$ i jest ciągła w $c$,
+    \end{enumerate}
+    to na tym otoczeniu punktu $c$ funkcja $f$ jest ściśle rosnąca (malejąca).
+\end{twier}
+
+\begin{twier}{Twierdzenie 8.13}
+    Niech $f:\R\supset X\to\R$ oraz $c\in X$. Jeśli $f'(c)\neq0$, $f'$ istnieje na otoczeniu punktu $c$ i jest na nim ciągła, to istnieje otoczenie punktu $c$, takie że $g:(c-\delta,c+\delta)\to f[(c-\delta,c+\delta)]$ jest bijekcją.
+\end{twier}
+
+\begin{defr}{Definicja 8.8: Homomorfizm}
+    Ciągłą bijekcję, której odwrotoność również jest ciągła, nazywamy \textbf{homomorfizmem}.
+\end{defr}
+
+%\begin{twier}{Reguła de l'Hospitala 8.14}
+%    \hfill \texttt{WERSJA I}\\ \smallskip
+%Niech funkcje rzeczywiste $f,g$ będą określone na przedziale $(a,b]$ i
+%\begin{equation*}
+%    \left( \lim_{x\to a^+}f(x)=0\land \lim_{x\to a^+}g(x)=0\right)\ \lor\ \left( \lim_{x\to a^+}f(x)=\pm\infty\land \lim_{x\to a^+}g(x)=\pm\infty\right)
+%\end{equation*}
+%\end{twier}
+
+
+\begin{table}[ht]
 \begin{center}
     \begin{tabular}{|c|c|}
     \hline
@@ -1415,6 +1521,8 @@ $f\circ g$ jest funkcją różniczkowalną w punkcie $a$ i ma pochodną
     \end{tabular}
 \end{center}
 \end{table}
+
+
 
 
 
