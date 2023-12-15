@@ -27,6 +27,7 @@
 \pretocmd\start@multline{\setcounter{equation}{0}}{}{}
 \makeatother
 
+
 %%%%%%%%%%%%%%%
 % TWIERDZENIA $
 %%%%%%%%%%%%%%%
@@ -95,6 +96,9 @@
 
 \DeclareMathOperator{\interior}{int}
 \DeclareMathOperator{\Closure}{cl}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\newcommand{\sgn}{\mathop{\mathrm{sgn}}}
 
 \ExplSyntaxOn
 \RenewDocumentCommand{\op}{m}
@@ -1395,6 +1399,13 @@ $f\circ g$ jest funkcją różniczkowalną w punkcie $a$ i ma pochodną
         \left( f^{-1} \right)'(x)=\frac{1}{f'(x)}.
     \end{equation*}
 \end{twier}
+\bigskip
+
+Parę pochodnych $n$-tego rzędu:
+\begin{align}
+    (\ln{x})^{(n)}&=(-1)^{n-1}(n-1)!\ x^{-n},\\
+    (\sin{x})^{(n)}&=\cos{\left(x+\frac{n\pi}{2}\right)}\ .
+\end{align}\bigskip
 
 \begin{defr}{Definicja 8.4: Ekstrema lokalne}
     Mówimy, że funkcja $f:X\to\R$ ma w $c\in X$ \textbf{maksimum (minimum) lokalne}, jeśli istnieje otoczenie $U\subset X$
@@ -1490,37 +1501,90 @@ Niech funkcja $f$ będzie różniczkowalna na $(a,b)$, wówczas
 \end{twier}
 
 \begin{defr}{Definicja 8.8: Homomorfizm}
-    Ciągłą bijekcję, której odwrotoność również jest ciągła, nazywamy \textbf{homomorfizmem}.
+    Ciągłą bijekcję, której odwrotność również jest ciągła, nazywamy \textbf{homomorfizmem}.
 \end{defr}
 
-%\begin{twier}{Reguła de l'Hospitala 8.14}
-%    \hfill \texttt{WERSJA I}\\ \smallskip
-%Niech funkcje rzeczywiste $f,g$ będą określone na przedziale $(a,b]$ i
-%\begin{equation*}
-%    \left( \lim_{x\to a^+}f(x)=0\land \lim_{x\to a^+}g(x)=0\right)\ \lor\ \left( \lim_{x\to a^+}f(x)=\pm\infty\land \lim_{x\to a^+}g(x)=\pm\infty\right)
-%\end{equation*}
-%\end{twier}
+\begin{defr}{Definicja 8.9: Zbiory homomorficzne}
+    Zbiory pomiędzy, którymi istnieje homomorfizm nazywamy \textbf{homomorficznymi}.
+\end{defr}
+
+\begin{twier}{Reguła de l'Hospitala 8.14}
+    \hfill \texttt{WERSJA I}\\ \smallskip
+Niech $f,g$ będą funkcjami rzeczywistymi, różniczkowalnymi na $(a,b)$ i $\forall_{x\in(a,b)}\ g'(x)\neq0$, gdzie $-\infty\le a<b\le+\infty$ oraz
+\begin{gather*}
+   \left( \lim_{x\to a^+}f(x)=0\land \lim_{x\to a^+}g(x)=0\right)\ \lor\ \left( \lim_{x\to a^+}f(x)=\pm\infty\land \lim_{x\to a^+}g(x)=\pm\infty\right),\ \text{wówczas}\\
+   \left(\exists_{g\in\closure{\R}}\ \lim_{x\to a^+}{\frac{f'(x)}{g'(x)}}=g\right)\implies\lim_{x\to a^+}{\frac{f(x)}{g(x)}}=g.
+\end{gather*}
+Analogiczne twierdzenie jest też prawdziwe dla granic lewostronnych i obustronnych.
+\bigskip
+
+    \hfill \texttt{WERSJA II}\\ \smallskip
+Niech $f,g$ będą funkcjami rzeczywistymi, różniczkowalnymi na $(c,+\infty)$ i $\forall_{x\in(c,+\infty)}\ g'(x)\neq0$, gdzie $-\infty\le c<+\infty$ oraz
+\begin{gather*}
+    \left( \lim_{x\to +\infty}f(x)=0\land \lim_{x\to +\infty}g(x)=0\right)\ \lor\ \left( \lim_{x\to +\infty}f(x)=\pm\infty\land \lim_{x\to +\infty}g(x)=\pm\infty\right),\ \text{wówczas}\\
+    \left(\exists_{g\in\closure{\R}}\ \lim_{x\to +\infty}{\frac{f'(x)}{g'(x)}}=g\right)\implies\lim_{x\to +\infty}{\frac{f(x)}{g(x)}}=g.
+\end{gather*}
+Analogiczne twierdzenie jest też prawdziwe dla granic gdy $x\to-\infty$.
+\end{twier}
+
+Zbiór $\closure{\R}$ definiujemy jako $\R\cup\set{-\infty,+\infty}$. Chcąc zastosować regułę de l'Hospitala do funkcji postaci $f(x)^{g(x)}$, można je przedstawić jako $e^{g(x)\ln{f(x)}}$.
+
+\begin{twier}{Wzór Leibniza 8.15}
+    Niech $f,g$ będą funkcjami różniczkowalnymi, posiadającymi pochodne do rzędu $n$ włącznie. Wówczas pochodna $n$-tego rzędu iloczynu $f\cdot g$ wyraża się wzorem:
+    \begin{equation*}
+        (f\cdot g)^{(n)}=\sum_{k=0}^{n}{f^{(n-k)}g^{(k)}}.
+    \end{equation*}
+\end{twier}
+
+\begin{defr}{Definicja 8.10: Funkcja wypukła}
+    Niech $f:A\to\R$, gdzie $A$ jest przedziałem liczb rzeczywistych. Funkcję $f$ nazywamy \textbf{wypukłą} na przedziale $A$, jeśli 
+    \begin{equation*}
+        \forall_{x_1,x_2\in A}\ \forall_{\theta\in[0,1]}\hquad f(\theta x_1+(1-\theta)x_2)\le\theta f(x_1)+(1-\theta)f(x_2).
+    \end{equation*}
+\end{defr}
+
+\begin{defr}{Definicja 8.10: Funkcja wklęsła}
+    Niech $f:A\to\R$, gdzie $A$ jest przedziałem liczb rzeczywistych. Funkcję $f$ nazywamy \textbf{wklęsłą} na przedziale $A$, jeśli 
+    \begin{equation*}
+        \forall_{x_1,x_2\in A}\ \forall_{\theta\in[0,1]}\hquad f(\theta x_1+(1-\theta)x_2)\ge\theta f(x_1)+(1-\theta)f(x_2).
+    \end{equation*}
+\end{defr}
+
+Zazwyczaj w definiowaniu funkcji wypukłej i wklęsłej korzysta się z pojęcia zbioru wypukłego, jednak na wykładzie otrzymaliśmy węższą definicję. Przedziały liczb rzeczywistych są zbiorami wypukłymi.
+
+\begin{twier}{Twierdzenie 8.16}
+    Funkcja $f:A\to\R$ jest wypukła (wklęsła) na zbiorze liczb rzeczywistych $A$ \textit{wtedy i tylko wtedy, gdy} dla dowolnych $x_1,\dots,x_n\in A$ i $\theta_1,\dots,\theta_n\in[0,1]$, takich że $\sum_{i=1}^{n}{\theta_{i}=1}$ zachodzi
+    \begin{gather*}
+        f\left(\sum_{i=1}^{n}{\theta_{i}x_{i}}\right)\le\sum_{i=1}^{n}{\theta_{i}f(x_{i})}\\
+        \left(\ f\left(\sum_{i=1}^{n}{\theta_{i}x_{i}}\right)\ge\sum_{i=1}^{n}{\theta_{i}f(x_{i})}\ \right).
+    \end{gather*}
+\end{twier}
 
 
 \begin{table}[ht]
 \begin{center}
     \begin{tabular}{|c|c|}
     \hline
-    $f(x)$        & $f'(x)$           \\ \hline 
-    $x^n$         & $nx^{n-1}$        \\ \hline
-    $a^x$         & $a^x\,\ln{a}$     \\ \hline
-    $\log_{a}{x}$ & $1/(x\ln{a})$     \\ \hline
-    $\sin{x}$     & $\cos{x}$         \\ \hline
-    $\cos{x}$     & $-\sin{x}$        \\ \hline
-    $\tan{x}$     & $1/\cos^2{x}$     \\ \hline
-    $\arcsin{x}$  & $1/\sqrt{1-x^2}$  \\ \hline
-    $\arccos{x}$  & $-1/\sqrt{1-x^2}$ \\ \hline
-    $\arctan{x}$  & $1/(1+x^2)$       \\ \hline
-    $\sinh{x}$    & $\cosh{x}$        \\ \hline
-    $\tanh{x}$    & $1-\tanh^2{x}$    \\ \hline
+    $f(x)$                              & $f'(x)$                                         \\ \hline
+    $x^\alpha$                          & $\alpha x^{\alpha-1}$                           \\ \hline
+    $a^x$                               & $a^x\,\ln{a}$                                   \\ \hline
+    $\log_{a}{x}$                       & $1/(x\ln{a})$                                   \\ \hline
+    $\sin{x}$                           & $\cos{x}$                                       \\ \hline
+    $\cos{x}$                           & $-\sin{x}$                                      \\ \hline
+    $\tan{x}$                           & $1/\cos^2{x}$                                   \\ \hline
+    $\arcsin{x}$                        & $1/\sqrt{1-x^2}$                                \\ \hline
+    $\arccos{x}$                        & $-1/\sqrt{1-x^2}$                               \\ \hline
+    $\arctan{x}$                        & $1/(1+x^2)$                                     \\ \hline
+    $\sinh{x}$                          & $\cosh{x}$                                      \\ \hline
+    $\tanh{x}$                          & $1-\tanh^2{x}$                                  \\ \hline
+    $\arcsinh{x}$                       & $1/\sqrt{x^2+1}$                                \\ \hline
+    \multicolumn{1}{|l|}{$\arccosh{x}$} & \multicolumn{1}{l|}{$1/(\sqrt{1-x}\sqrt{1+x})$} \\ \hline
+    \multicolumn{1}{|l|}{$x^x$}         & \multicolumn{1}{l|}{$x^x(\ln{x}+1)$}            \\ \hline
+    \multicolumn{1}{|l|}{$|h(x)|$}      & \multicolumn{1}{l|}{$\sgn{(h(x))}\ h'(x)$}        \\ \hline
     \end{tabular}
 \end{center}
 \end{table}
+
 
 
 
