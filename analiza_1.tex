@@ -828,7 +828,7 @@ Niech $\seq{a}$ będzie ciągiem liczb rzeczywistych i $c>0$, wówczas
     \item $\lin{a_n}=0\ \land\ \forall_{n\in\N}\ a_n\neq0\implies\lin{\frac{e^{a_n}-1}{a_n}}=1$,
     \item $\lin{a_n}=0\ \land\ \forall_{n\in\N}\ a_n\neq0\implies\lin{\frac{c^{a_n}-1}{a_n}}=\ln{c}$,
     \item $\lin{a_n}=0\ \land\ \forall_{n\in\N}\ a_n\neq0\ \land\ p\in\R\implies\lin{\frac{(1+a_n)^p-1}{a_n}}=p$,
-    \item $\lin{a_n}=+\infty\ \land\ p>0\implies \lin{\frac{ln{a_n}}{a_n^p}}$.
+    \item $\lin{a_n}=+\infty\ \land\ p>0\implies \lin{\frac{ln{a_n}}{a_n^p}}=0$.
 \end{enumerate}
 \end{twier}
 
@@ -1553,13 +1553,30 @@ Zbiór $\closure{\R}$ definiujemy jako $\R\cup\set{-\infty,+\infty}$. Chcąc zas
 Zazwyczaj w definiowaniu funkcji wypukłej i wklęsłej korzysta się z pojęcia zbioru wypukłego, jednak na wykładzie otrzymaliśmy węższą definicję. Przedziały liczb rzeczywistych są zbiorami wypukłymi.
 
 \begin{twier}{Twierdzenie 8.16}
-    Funkcja $f:A\to\R$ jest wypukła (wklęsła) na zbiorze liczb rzeczywistych $A$ \textit{wtedy i tylko wtedy, gdy} dla dowolnych $x_1,\dots,x_n\in A$ i $\theta_1,\dots,\theta_n\in[0,1]$, takich że $\sum_{i=1}^{n}{\theta_{i}=1}$ zachodzi
+    Funkcja $f:A\to\R$ jest wypukła (wklęsła) na zbiorze liczb rzeczywistych $A$ \textit{wtedy i tylko wtedy, gdy}
     \begin{gather*}
-        f\left(\sum_{i=1}^{n}{\theta_{i}x_{i}}\right)\le\sum_{i=1}^{n}{\theta_{i}f(x_{i})}\\
-        \left(\ f\left(\sum_{i=1}^{n}{\theta_{i}x_{i}}\right)\ge\sum_{i=1}^{n}{\theta_{i}f(x_{i})}\ \right).
+        \forall_{n\in\N,\, n\ge2}\ \forall_{x_1,\dots,x_n\in A}\ \forall_{\theta_1,\dots,\theta_2\in[0,1]\hquad }f\left(\sum_{i=1}^{n}{\theta_{i}x_{i}}\right)\le\sum_{i=1}^{n}{\theta_{i}f(x_{i})}\\
+        \left(\ \forall_{n\in\N,\, n\ge2}\ \forall_{x_1,\dots,x_n\in A}\ \forall_{\theta_1,\dots,\theta_2\in[0,1]\hquad } f\left(\sum_{i=1}^{n}{\theta_{i}x_{i}}\right)\ge\sum_{i=1}^{n}{\theta_{i}f(x_{i})}\ \right).
     \end{gather*}
 \end{twier}
 
+\begin{twier}{Twierdzenie 8.17}
+    Dana jest funkcja $f:A\to\R$, gdzie $A$ jest przedziałem liczb rzeczywistych. Niech $\alpha_{ij}=\frac{f(x_i)-f(x_j)}{x_i-x_j}$. Mówimy, że $f$ jest wypukła \textit{wtedy i tylko wtedy, gdy}
+    \begin{itemize}
+        \item[($\ifff$)] $\forall_{x_1,x_2,x_3\in A,\,x_1<x_2<x_3}\hquad \alpha_{21}\le\alpha_{32}$,
+        \item[($\ifff$)] $\forall_{x_1,x_2,x_3\in A,\,x_1<x_2<x_3}\hquad \alpha_{31}\le\alpha_{32}$,
+        \item[($\ifff$)] $\forall_{x_1,x_2,x_3\in A,\,x_1<x_2<x_3}\hquad \alpha_{21}\le\alpha_{31}$.
+    \end{itemize}
+\end{twier}
+
+\begin{wn}{Wnioski}
+\begin{enumerate}
+    \item Jeżeli funkcja $f$ jest wypukła na $(a,b)$, to $\forall_{x\in(a,b)}$ istnieją pochodne jednostronne, ponadto $f'_{+}(x)\ge f'_{-}(x)$.
+    \item Funkcja wypukła na przedziale otwartym jest ciągła.
+    \item Funkcja $f$ jest różniczkowalna i wypukła na przedziale $(a,b)$ \textit{wtedy i tylko wtedy, gdy} jej pochodna $f'$ jest niemalejąca.
+    \item Jeżeli funkcja $f$ jest dwukrotnie różniczkowalna na $(a,b)$, to $f$ jest wypukła na $(a,b)$ \textit{wtedy i tylko wtedy, gdy} $\forall_{x\in(a,b)\ f''(x)\ge0}$.
+\end{enumerate}
+\end{wn}
 
 \begin{table}[ht]
 \begin{center}
