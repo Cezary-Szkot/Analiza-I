@@ -1578,6 +1578,29 @@ Zazwyczaj w definiowaniu funkcji wypukłej i wklęsłej korzysta się z pojęcia
 \end{enumerate}
 \end{wn}
 
+\begin{twier}{Wzór Taylora z resztą w postaci Peano 8.18}
+    Niech $f:(a,b)\to\R$ i $x_0\in(a,b)$. Jeśli $f$ ma $(n-1)$ pochodnych na $(a,b)$ i $n$-tą pochodną w punkcie $x_0$, to
+    \begin{equation*}
+        f(x)=\sum_{k=0}^{n}{\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k}+R_n(x,x_0),\quad \lim_{x\to x_0}{\frac{R_n(x,x_0)}{(x-x_0)^i}}=0.
+    \end{equation*}
+\end{twier}
+
+Zamiast podawać warunek po przecinku, pisze się czasem $R_n(x,x_0)=o(x^i)$ dla $x\to0$. Symbol ten to \textit{o małe}; napis $f(x)=o(g(x))$ dla $x\to a$ oznacza, że $\lim_{x\to a}{f(x)/g(x)}=0$. Wzór Taylora z resztą w postaci Peano dla $x_0=0$ nazywamy \textit{wzorem Maclaurina}.
+
+\begin{twier}{Wzór Taylora z resztą w postaci Cauchy'ego i Lagrange'a 8.19}
+    Niech $f:(a,b)\to\R$ ma w przedziale $(a,b)$ pochodne rzędu $(n+1)$ włącznie, wówczas\medskip
+
+    \hfill \texttt{z resztą w postaci Lagrange'a}\\ 
+    \begin{equation*}
+        \forall_{x,x_0\in(a,b)}\ \exists_{\theta\in(0,1)}\hquad f(x)=\sum_{k=0}^{n}{\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k}+\frac{(x-x_0)^{n+1}}{(n+1)!}f^{(n+1)}(x_0+\theta(x-x_0)),
+    \end{equation*}
+
+    \hfill \texttt{z resztą w postaci Cauchy'ego}\\
+    \begin{equation*}
+        \forall_{x,x_0\in(a,b)}\ \exists_{\theta\in(0,1)}\hquad f(x)=\sum_{k=0}^{n}{\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k}+\frac{(x-x_0)^{n+1}(1-\theta)^{n}}{n!}f^{(n+1)}(x_0+\theta(x-x_0)).
+    \end{equation*}
+\end{twier}
+
 \begin{table}[ht]
 \begin{center}
     \begin{tabular}{|c|c|}
